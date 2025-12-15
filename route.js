@@ -27,7 +27,7 @@ class Route {
 
       if (State[1] === `favicon.ico`) {
 
-        let File = createReadStream(`bin/webclient/get/png/eatso.png`);
+        let File = createReadStream(`bin/wa/get/png/eatso.png`);
 
         Arg[1].writeHead(200, {[`Content-Type`]: `image/png`});
 
@@ -187,7 +187,7 @@ class Route {
                             
                           Blob.on('end', () => {
 
-                            if (blob) {
+                            if (blob) {console.log(blob)
 
                                   if (Tools.typen(blob).reference) {
 
@@ -208,11 +208,12 @@ class Route {
                       });
 
                     POST.write(Tools.coats({
+                      account_id: 1955,
                       amount: parseFloat(Pulls.float),
-                      channel_id: 2283,
+                      channel_id: 2283,//3417, 
                       external_reference: md, 
                       network_code: `63902`,
-                      phone_number: `0` + Pulls.call,
+                      phone_number: `254` + Pulls.call,
                       provider: `sasapay`}));
 
                     POST.end();

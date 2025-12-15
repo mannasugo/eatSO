@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: 'insvg';
-  src: url('/webclient/get/font/din.ttf') format('truetype');
+  src: url('/wa/get/font/din.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'litera';
-  src: url('/webclient/get/font/litera.ttf') format('truetype');
+  src: url('/wa/get/font/litera.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: qb;
-  src: url(/webclient/get/font/63e613c1e565b81f95046014_neworder-medium.otf) format('opentype');
+  src: url(/wa/get/font/63e613c1e565b81f95046014_neworder-medium.otf) format('opentype');
   font-style: normal;
   font-weight: 100;
 }
@@ -27,35 +27,36 @@
   font-family: iintext;
   font-style: normal;
   font-weight: 100;   
-  src: url(/webclient/get/font/PFDinTextUniversalLight.otf) format("opentype")
+  src: url(/wa/get/font/PFDinTextUniversalLight.otf) format("opentype")
 }
 
 @font-face {
   font-family: cla;
   font-style: normal;
   font-weight: 100;
-  src: url(/webclient/get/font/Inter-Regular.d55e957612a3.woff2) format("woff2")
+  src: url(/wa/get/font/Inter-Regular.d55e957612a3.woff2) format("woff2")
 }
 
 @font-face {
   font-family: es;
   font-style: normal;
   font-weight: 100;
-  src: url(/webclient/get/font/ES.woff2) format("woff2")
+  src: url(/wa/get/font/ES.woff2) format("woff2")
 }
 
 @font-face {
   font-family: gtw;
   font-style: normal;
   font-weight: 100;
-  src: url(/webclient/get/font/GT-Walsheim-Regular-4ca5b57c.woff2) format("woff2")
+  src: url(/wa/get/font/GT-Walsheim-Regular-4ca5b57c.woff2) format("woff2")
 }
 
 @font-face {
   font-family: intext;
   font-style: normal;
   font-weight: 100;
-  src: url(/webclient/get/font/AGB.otf) format("opentype")
+  src: url(/wa/get/font/AGB.otf) format("opentype")
+  
 }
 
 a, article, body, div, footer, form, h1, h2, h3, h4, header, html, img, label, li, nav, p, section, span, time, ul {

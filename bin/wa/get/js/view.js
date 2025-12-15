@@ -85,7 +85,7 @@ let Models = {
 					}
 				
 					DOM[0].push([`div`, {id: Cat.ts, class: `g${Cat.ts}`, style: {height: `${180}px`, [`justify-content`]: `end`, [`margin-bottom`]: `${24}px`}}, 
-						[[`img`, {src: `webclient/get/catalog/${Cat.img}`, style: {margin: `${0} auto ${8}px`, width: `${70}%`}}],
+						[[`img`, {src: `wa/get/catalog/${Cat.img}`, style: {margin: `${0} auto ${8}px`, width: `${70}%`}}],
 						[`div`, {class: `_gxM`, style: {[`font-family`]: ``,[`font-size`]: `${12.88}px`, [`font-weight`]: 600}}, 
 							[[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Cat.objs[0][1]).toFixed(2)}`]]],
 						[`span`, {style: {[`font-family`]: ``,[`font-size`]: `${11}px`, margin: `${4}px ${0}`, overflow: `hidden`, [`text-transform`]: `capitalize`, [`text-overflow`]: `ellipsis`, [`white-space`]: `nowrap`}}, Cat.label.replaceAll(`_`, ` `)],
@@ -109,7 +109,7 @@ let Models = {
 						[`div`, {style: {background: `#fff`, [`border-bottom`]: `${1}px solid #ececec`, height: `${48}px`, padding: `${0}px ${24}px`, position: `fixed`, width: `${100}%`, [`z-index`]: 11}}, 
 							[[`div`, {class: `_gxM _geQ`}, 
 								[
-									[`span`, {style: {[`background-image`]: `url(webclient/get/png/eatso.png)`, [`background-size`]: `${20}px`, height: `${20}px`, width: `${20}px`}}], 
+									[`span`, {style: {[`background-image`]: `url(wa/get/png/eatso.png)`, [`background-size`]: `${20}px`, height: `${20}px`, width: `${20}px`}}], 
 									//[`div`, {class: `_eYG`, style: {[`margin-left`]: `${24}px`}}, [[`span`, {style: {[`font-family`]: `es`, [`font-size`]: `${12}px`, [`font-weight`]: 600}}, `eatso`]]],  
 									[`div`, {class: `_eYG`}, []], 
 									[`div`, {class: `_gZz`, style: {}}, 
@@ -169,7 +169,7 @@ let Models = {
 					[
 						[`div`, {class: `_gxM _geQ`}, 
 							[
-								[`img`, {src: `webclient/get/catalog/${item}.png`, style: {[`width`]: `${36}px`}}], 
+								[`img`, {src: `wa/get/catalog/${item}.png`, style: {[`width`]: `${36}px`}}], 
 								[`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}}, 
 									[[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Tools.typen(Clients.box)[item].label]]]]], 
 						[`div`, {style: {[`margin-left`]: `${48}px`}}, DOM[1]]]]);
@@ -270,7 +270,7 @@ let Models = {
 					[
 						[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
 							[
-								[`img`, {src: `webclient/get/catalog/${Obj.img}`, style: {[`width`]: `${36}px`}}], 
+								[`img`, {src: `wa/get/catalog/${Obj.img}`, style: {[`width`]: `${36}px`}}], 
 								[`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}}, 
 									[
 										[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Obj.label.replaceAll(`_`, ` `)],
@@ -305,7 +305,7 @@ let Models = {
 								[`span`, {style: {margin: `${12}px ${0} ${0} ${8}px`, [`text-decoration`]: `underline`}}, `M-PESA(Mobile Money)`]]],
 							[`div`, {style: {[`margin-top`]: `${18}px`}}, 
 								[[`div`, {class: `_gxM _geQ`, style: {border: `1px solid rgba(${193}, ${193}, ${193}, ${.25})`, [`border-radius`]: `${100}px`, [`font-family`]: `intext`, [`font-size`]: `${13.33333}px`, height: `${36}px`, padding: `${12}px ${16}px`}}, 
-									[[`img`, {src: `/webclient/get/svg/geopo/ke.svg`, style: {[`max-width`]: `${18}px`}}],
+									[[`img`, {src: `/wa/get/svg/geopo/ke.svg`, style: {[`max-width`]: `${18}px`}}],
 										[`div`, {class: `_gxM`, style: {[`margin-left`]: `${8}px`}}, 
 											[[`span`, {style: {color: `#515151`}}, `+254`]]], 
 										[`div`, {class: `_gZz`}, 
