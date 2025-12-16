@@ -4,7 +4,7 @@ const { readdir, readFile, readFileSync, createReadStream, mkdir, stat, writeFil
 
 const { createHash } = require(`crypto`);
 
-const { Constants, Sql, Tools } = require(`./tools`);
+const { Constants, Pay, Sql, Tools } = require(`./tools`);
 
 const XHR = require(`https`);
 
@@ -95,7 +95,17 @@ class Route {
 
                 */
 
-                Arg[1].end(Tools.coats({catalog: Objs}));
+                let Via = [];
+
+                if (Raw.mugs[1][Pulls.mug]) {
+
+                  Raw.incoming[0].forEach(Obj => {
+
+                    if (Obj.mug === Pulls.mug && Obj.state === `queue`) {Via.push(Obj.invoice)}
+                  });
+                }
+
+                Arg[1].end(Tools.coats({catalog: Objs, incoming: Via}));
               }
 
               if (Pulls.pull === `mug`) { 
@@ -154,7 +164,7 @@ class Route {
                       stamp: TZ
                     }, (sqlObj) => {
 
-                      Tools.mailto([`mailto@eatso.store`, `Mann2asugo`, Pulls.email, Constants.mail.init]);
+                      //Tools.mailto([`mailto@eatso.store`, `Mann2asugo`, Pulls.email, Constants.mail.init]);
 
                       Arg[1].end(Tools.coats({md: createHash(`md5`).update(`${TZ}`, `utf8`).digest(`hex`)}));
                     }]);
@@ -172,51 +182,30 @@ class Route {
 
                     let md = createHash(`md5`).update(`${ts}`, `utf8`).digest(`hex`);
 
-                    let POST = XHR.request({
-                          hostname: `backend.payhero.co.ke`,
-                          port: 443,
-                          path: `/api/v2/payments`,
-                          method: `POST`,
-                          headers: {
-                            Authorization: `Basic ZmRqQjFUbmZJT05qZHFlRHc1Wnc6MHVFZEx3aU5YOTZ4anVodm5PSUNXZjBjUUNNeWFlUDRYMjVrbTFoOA==`,
-                            [`Content-Type`]: `application/json`}}, Blob => {
+                    Pay.inta.collection()
+                      .mpesaStkPush({
+                        email: Raw.mugs[1][Pulls.mug].email,
+                        host: `https://sojava.xyz`,
+                        amount: parseFloat(Pulls.float),
+                        phone_number: `254` + Pulls.call,
+                        api_ref: md})
+                      .then((Blob) => {
 
-                        let blob = ``;
+                      if (Blob.id) {
 
-                        Blob.on(`data`, (buffer) => {blob += buffer});
-                            
-                          Blob.on('end', () => {
-
-                            if (blob) {console.log(blob)
-
-                                  if (Tools.typen(blob).reference) {
-
-                                    Sql.puts([`incoming`, {
-                                      id: `0` + Pulls.call, 
-                                      info: Pulls.box, 
-                                      md: md,
-                                      mug: Pulls.mug, 
-                                      state: `queue`,
-                                      ts: ts,
-                                      tx: Tools.typen(blob).reference}, (Bill) => {
-
-                                        Arg[1].end(Tools.coats({tx: Tools.typen(blob).reference}));
-                                    }]);
-                                  }
-                                }
-                            });
-                      });
-
-                    POST.write(Tools.coats({
-                      account_id: 1955,
-                      amount: parseFloat(Pulls.float),
-                      channel_id: 2283,//3417, 
-                      external_reference: md, 
-                      network_code: `63902`,
-                      phone_number: `254` + Pulls.call,
-                      provider: `sasapay`}));
-
-                    POST.end();
+                        Sql.puts([`incoming`, {
+                          float: parseFloat(Pulls.float),
+                          id: `254` + Pulls.call,  
+                          info: Pulls.box,
+                          invoice: Blob.invoice.invoice_id, 
+                          md: md,
+                          mug: Pulls.mug, 
+                          state: `queue`,
+                          ts: ts,
+                          tx: Blob.id}, (Bill) => {Arg[1].end(Tools.coats({tx: Blob.id}))}]);
+                        }
+                      })
+                    .catch((flaw) => {console.error(`BUG_REPORT:`, flaw)});
                   }
                 }
               }
@@ -227,54 +216,56 @@ class Route {
     }
   }
 
-  io () {}
+  io (App) {
 
-  pollPay () {
+    App.on(`connection`, Polling => {
 
-    setInterval(()=> {
+      Polling.on(`incoming`, Arg => {
 
-      Sql.pulls(Raw => {
+        Sql.pulls(Raw => {
 
-        Raw.incoming[0].forEach(Bill => {
+          let Yet = []
 
-          if (Bill.state === `queue`) {
+          Raw.incoming[0].forEach(Obj => {
 
-            let POST = XHR.request({
-                  hostname: `backend.payhero.co.ke`,
-                  port: 443,
-                  path: `/api/v2/transaction-status`,
-                  method: `GET`,
-                  headers: {
-                    Authorization: `Basic ZmRqQjFUbmZJT05qZHFlRHc1Wnc6MHVFZEx3aU5YOTZ4anVodm5PSUNXZjBjUUNNeWFlUDRYMjVrbTFoOA==`,
-                    [`Content-Type`]: `application/json`}}, Blob => {
+            if (Obj.mug === Arg[0] && Arg[1].indexOf(Obj.invoice) > -1 && Obj.state === `queue`) Yet.push([Obj.invoice, Obj.md])
+          });
 
-              let blob = ``;
+          Yet.forEach(Obj => {
 
-              Blob.on(`data`, (buffer) => {blob += buffer});
-                            
-                  Blob.on('end', () => {
+            Pay.inta.collection()
+            .status(Obj[0])
+            .then((Blob) => {
 
-                      if (blob) {
+              if (Blob.invoice.state === `COMPLETE` && !Raw.ledge[1][Obj[1]]) {
 
-                        if (Tools.typen(blob).status === `SUCCESS`) {
+                let Old = Tools.typen(Tools.coats(Raw.incoming[1][Obj[1]]));
 
-                            let Old = Tools.typen(Tools.coats(Bill));
+                Raw.incoming[1][Obj[1]].state = `complete`;
 
-                            Bill.state = `complete`;
+                Sql.places([`incoming`, Raw.incoming[1][Obj[1]], Old, (Q) => {}]);
+              }
 
-                    Sql.places([`invoice`, Bill, Old, (Q) => {}]);
-                  }
-                      }
-                  });
-            });
+              if (Blob.invoice.state === `FAILED`) {
 
-            POST.write(Tools.coats({reference: Bill.tx}));
+                let Old = Tools.typen(Tools.coats(Raw.incoming[1][Obj[1]]));
 
-            POST.end();
-          }
+                Raw.incoming[1][Obj[1]].state = `fail`;
+
+                Sql.places([`incoming`, Raw.incoming[1][Obj[1]], Old, (Q) => {}])
+              }
+            })
+            .catch((flaw) => {console.error(`STATUS:`, flaw)});
+          });
+
+          let Queue = [];
+
+          Raw.incoming[0].forEach(Obj => { if (Obj.mug === Arg[0] && Obj.state === `queue`) { Queue.push(Obj.invoice) } });
+
+          App.emit(`incoming`, [Arg[0], Queue])
         });
       });
-    }, 120000);
+    });
   }
 }
 

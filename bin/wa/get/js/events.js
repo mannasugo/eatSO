@@ -2,510 +2,519 @@
 
 class Event {
 
-	listen (Arg) { 
+  listen (Arg) { 
 
-		(Arg[0].addEventListener) ? Arg[0].addEventListener(Arg[1], Arg[2]) : Arg[0].attachEvent(`on` + Arg[1], Arg[2]);
-	}
+    (Arg[0].addEventListener) ? Arg[0].addEventListener(Arg[1], Arg[2]) : Arg[0].attachEvent(`on` + Arg[1], Arg[2]);
+    }
 
-	getSource (Arg) {
+  getSource (Arg) {
 
-		if (Arg.target) return Arg.target;
-	}
+        if (Arg.target) return Arg.target;
+    }
 
-	app (Arg) {
+  app (Arg) {
 
-		let Catalog = {};
+    let Catalog = {};
 
-		Arg[0].catalog.forEach(Cat => {
+    Arg[0].catalog.forEach(Cat => {
 
-			Cat.pay = {};
+            Cat.pay = {};
 
-			Cat.objs.forEach((A) => {Cat.pay[A[0]] = A[1]});
+            Cat.objs.forEach((A) => {Cat.pay[A[0]] = A[1]});
 
-			Catalog[Cat.ts] = Cat;
-		});
+            Catalog[Cat.ts] = Cat;
+        });
 
-		document.querySelectorAll(`.box`).forEach((VAR, NODE) => {
+    document.querySelectorAll(`.box`).forEach((VAR, NODE) => {
 
-			this.listen([VAR, `click`, S => {
+            this.listen([VAR, `click`, S => {
 
-				let Slot = VAR.parentNode.parentNode;
+                let Slot = VAR.parentNode.parentNode;
 
-				let METER = VAR.parentNode.children;
+                let METER = VAR.parentNode.children;
 
-				if (!Clients.box) {Clients.box = Tools.coats({})}
+                if (!Clients.box) {Clients.box = Tools.coats({})}
 
-				let Box = Tools.typen(Clients.box);
+                let Box = Tools.typen(Clients.box);
 
-				if (Catalog[Slot.id].objs.length === 1) {let items = 0;
+                if (Catalog[Slot.id].objs.length === 1) {let items = 0;
 
-					if (VAR.getAttribute(`role`) === `+`) {
+                    if (VAR.getAttribute(`role`) === `+`) {
 
-						if (!Tools.typen(Clients.box)[Slot.id]) {
+                        if (!Tools.typen(Clients.box)[Slot.id]) {
 
-							Box[Slot.id] = {
-								label: Catalog[Slot.id].label.toString().replace(`_`, ` `), 
-								mass: Catalog[Slot.id].mass, 
-								objs: {[VAR.parentNode.id]: [Catalog[Slot.id].pay[VAR.parentNode.id], 1]}};
+                            Box[Slot.id] = {
+                                label: Catalog[Slot.id].label.toString().replace(`_`, ` `), 
+                                mass: Catalog[Slot.id].mass, 
+                                objs: {[VAR.parentNode.id]: [Catalog[Slot.id].pay[VAR.parentNode.id], 1]}};
 
-							Clients.box = Tools.coats(Box);
-						}
+                            Clients.box = Tools.coats(Box);
+                        }
 
-						else if (Tools.typen(Clients.box)[Slot.id]) {
+                        else if (Tools.typen(Clients.box)[Slot.id]) {
 
-							Box[Slot.id].objs[VAR.parentNode.id][1] += 1;
+                            Box[Slot.id].objs[VAR.parentNode.id][1] += 1;
 
-							Clients.box = Tools.coats(Box);
-						}
+                            Clients.box = Tools.coats(Box);
+                        }
 
-						VAR.previousSibling.innerText = Box[Slot.id].objs[VAR.parentNode.id][1];
+                        VAR.previousSibling.innerText = Box[Slot.id].objs[VAR.parentNode.id][1];
 
-						VAR.previousSibling.style.display = `flex`;
+                        VAR.previousSibling.style.display = `flex`;
 
-						VAR.previousSibling.previousSibling.style.display = `flex`;
-					}
+                        VAR.previousSibling.previousSibling.style.display = `flex`;
+                    }
 
-					if (VAR.getAttribute(`role`) === `-`) {
+                    if (VAR.getAttribute(`role`) === `-`) {
 
-						if (Tools.typen(Clients.box)[Slot.id] && Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.id]) {
+                        if (Tools.typen(Clients.box)[Slot.id] && Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.id]) {
 
-							Box = Tools.typen(Clients.box);
+                            Box = Tools.typen(Clients.box);
 
-							Box[Slot.id].objs[VAR.parentNode.id][1] -= 1;
+                            Box[Slot.id].objs[VAR.parentNode.id][1] -= 1;
 
-							if (Box[Slot.id].objs[VAR.parentNode.id][1] === 0) {
+                            if (Box[Slot.id].objs[VAR.parentNode.id][1] === 0) {
 
-								let Objects = {};
+                                let Objects = {};
 
-								for (let item in Box) {
+                                for (let item in Box) {
 
-									if (item !== Slot.id) Objects[item] = Box[item];
-								}
+                                    if (item !== Slot.id) Objects[item] = Box[item];
+                                }
 
-								Box = Objects;
+                                Box = Objects;
 
-								VAR.style.display = `none`;
+                                VAR.style.display = `none`;
 
-								VAR.nextSibling.style.display = `none`;
-							}
+                                VAR.nextSibling.style.display = `none`;
+                            }
 
-							Clients.box = Tools.coats(Box);
+                            Clients.box = Tools.coats(Box);
 
-							VAR.nextSibling.innerText = (!Box[Slot.id])? 0: Box[Slot.id].objs[VAR.parentNode.id][1];
-						}						
-					}
+                            VAR.nextSibling.innerText = (!Box[Slot.id])? 0: Box[Slot.id].objs[VAR.parentNode.id][1];
+                        }                       
+                    }
 
-					for (let item in Box) {++items}
+                    for (let item in Box) {++items}
 
-					document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = items;
-				}
+                    document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = items;
+                }
 
-				if (Catalog[Slot.id].objs.length > 1) {
+                if (Catalog[Slot.id].objs.length > 1) {
 
-					View.pop();
+                    View.pop();
 
-					View.DOM([`#modal`, [Models.app.multi(Catalog[Slot.id])]]);
+                    View.DOM([`#modal`, [Models.app.multi(Catalog[Slot.id])]]);
 
-					document.querySelector(`#modal`).style.display = `flex`;
+                    document.querySelector(`#modal`).style.display = `flex`;
 
-					document.querySelectorAll(`.multibox`).forEach(VAR => {
+                    document.querySelectorAll(`.multibox`).forEach(VAR => {
 
-						this.listen([VAR, `click`, S => {
+                        this.listen([VAR, `click`, S => {
 
-							let items = 0, bag = 0;
+                            let items = 0, bag = 0;
 
-							if (VAR.getAttribute(`role`) === `-`) {
+                            if (VAR.getAttribute(`role`) === `-`) {
 
-								if (Tools.typen(Clients.box)[Slot.id] && Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
+                                if (Tools.typen(Clients.box)[Slot.id] && Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
 
-									Box = Tools.typen(Clients.box);
+                                    Box = Tools.typen(Clients.box);
 
-									Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] -= 1;
+                                    Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] -= 1;
 
-									if (Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] === 0) {
+                                    if (Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] === 0) {
 
-										let Objs = {};
+                                        let Objs = {};
 
-										for (let obj in Box[Slot.id].objs) {
+                                        for (let obj in Box[Slot.id].objs) {
 
-											if (obj !== VAR.parentNode.parentNode.id) Objs[obj] = Box[Slot.id].objs[obj];
-										};
+                                            if (obj !== VAR.parentNode.parentNode.id) Objs[obj] = Box[Slot.id].objs[obj];
+                                        };
 
-										Box[Slot.id].objs = Objs;
+                                        Box[Slot.id].objs = Objs;
 
-										let Objects = {};
+                                        let Objects = {};
 
-										for (let item in Box) {
+                                        for (let item in Box) {
 
-											let objs = 0
+                                            let objs = 0
 
-											for (let obj in Box[item].objs) {objs++}
+                                            for (let obj in Box[item].objs) {objs++}
 
-											if (objs > 0) Objects[item] = Box[item];
-										}
+                                            if (objs > 0) Objects[item] = Box[item];
+                                        }
 
-										Box = Objects;
+                                        Box = Objects;
 
-										METER[0].style.display = `none`;
+                                        METER[0].style.display = `none`;
 
-										METER[1].style.display = `none`;
-									}
+                                        METER[1].style.display = `none`;
+                                    }
 
-									Clients.box = Tools.coats(Box);
+                                    Clients.box = Tools.coats(Box);
 
-									if (Box[Slot.id]) {
+                                    if (Box[Slot.id]) {
 
-										for (let item in Box[Slot.id].objs) {items += parseFloat(Box[Slot.id].objs[item][1])}METER[1].innerText = items;
+                                        for (let item in Box[Slot.id].objs) {items += parseFloat(Box[Slot.id].objs[item][1])}METER[1].innerText = items;
 
-										METER[0].style.display = `flex`;
+                                        METER[0].style.display = `flex`;
 
-										METER[1].style.display = `flex`;
-									}
+                                        METER[1].style.display = `flex`;
+                                    }
 
-									VAR.nextSibling.innerText = (!Box[Slot.id] || !Box[Slot.id].objs[VAR.parentNode.parentNode.id])? 0: Box[Slot.id].objs[VAR.parentNode.parentNode.id][1];				
-								}
-							}
+                                    VAR.nextSibling.innerText = (!Box[Slot.id] || !Box[Slot.id].objs[VAR.parentNode.parentNode.id])? 0: Box[Slot.id].objs[VAR.parentNode.parentNode.id][1];             
+                                }
+                            }
 
-							if (VAR.getAttribute(`role`) === `+`) {
+                            if (VAR.getAttribute(`role`) === `+`) {
 
-								if (!Tools.typen(Clients.box)[Slot.id]) {
+                                if (!Tools.typen(Clients.box)[Slot.id]) {
 
-									Box[Slot.id] = {label: Catalog[Slot.id].label.toString().replace(`_`, ` `), mass: Catalog[Slot.id].mass, objs: {}};
+                                    Box[Slot.id] = {label: Catalog[Slot.id].label.toString().replace(`_`, ` `), mass: Catalog[Slot.id].mass, objs: {}};
 
-									Clients.box = Tools.coats(Box);
-								}
+                                    Clients.box = Tools.coats(Box);
+                                }
 
-								if (Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
+                                if (Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
 
-									Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] += 1;
+                                    Box[Slot.id].objs[VAR.parentNode.parentNode.id][1] += 1;
 
-									Clients.box = Tools.coats(Box);
-								}
+                                    Clients.box = Tools.coats(Box);
+                                }
 
-								if (Tools.typen(Clients.box)[Slot.id] && !Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
+                                if (Tools.typen(Clients.box)[Slot.id] && !Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.parentNode.id]) {
 
-									Box[Slot.id].objs[VAR.parentNode.parentNode.id] = [Catalog[Slot.id].pay[VAR.parentNode.parentNode.id], 1];
+                                    Box[Slot.id].objs[VAR.parentNode.parentNode.id] = [Catalog[Slot.id].pay[VAR.parentNode.parentNode.id], 1];
 
-									Clients.box = Tools.coats(Box);
-								}
+                                    Clients.box = Tools.coats(Box);
+                                }
 
-								for (let item in Box[Slot.id].objs) {items += parseFloat(Box[Slot.id].objs[item][1])}
+                                for (let item in Box[Slot.id].objs) {items += parseFloat(Box[Slot.id].objs[item][1])}
 
-								VAR.previousSibling.innerText = Box[Slot.id].objs[VAR.parentNode.parentNode.id][1];
+                                VAR.previousSibling.innerText = Box[Slot.id].objs[VAR.parentNode.parentNode.id][1];
 
-								METER[1].innerText = items;
+                                METER[1].innerText = items;
 
-								METER[0].style.display = `flex`;
+                                METER[0].style.display = `flex`;
 
-								METER[1].style.display = `flex`;
-							}
+                                METER[1].style.display = `flex`;
+                            }
 
-							for (let item in Box) {++bag}
+                            for (let item in Box) {++bag}
 
-							document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
-						}]);
-					});
+                            document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
+                        }]);
+                    });
 
-					this.listen([document.querySelector(`#multiClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`;}]);
-				}
-			}]);
-		});
+                    this.listen([document.querySelector(`#multiClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`;}]);
+                }
+            }]);
+        });
 
-		this.listen([document.querySelector(`#menu-box`), `click`, S => {
+    this.listen([document.querySelector(`#menu-box`), `click`, S => {
 
-			document.querySelector(`#menu-box-list`).style.display = (document.querySelector(`#menu-box-list`).style.display === `flex`)? `none`: `flex`;
-		}]);
+            document.querySelector(`#menu-box-list`).style.display = (document.querySelector(`#menu-box-list`).style.display === `flex`)? `none`: `flex`;
+        }]);
 
-		this.listen([document.querySelector(`#boxup`), `click`, S => {
+        this.listen([document.querySelector(`#boxup`), `click`, S => {
 
-			document.querySelector(`#menu-box-list`).style.display = `none`;
+            document.querySelector(`#menu-box-list`).style.display = `none`;
 
-			let boxup = () => {
+            let boxup = () => {
 
-				View.pop();
+                View.pop();
 
-				View.DOM([`#modal`, [Models.app.boxup()]]);
+                View.DOM([`#modal`, [Models.app.boxup()]]);
 
-				document.querySelector(`#modal`).style.display = `flex`;
+                document.querySelector(`#modal`).style.display = `flex`;
 
-				if (document.querySelector(`.multibox`)) {
+                if (document.querySelector(`.multibox`)) {
 
-					document.querySelectorAll(`.multibox`).forEach(VAR => {
+                    document.querySelectorAll(`.multibox`).forEach(VAR => {
 
-						this.listen([VAR, `click`, S => {
+                        this.listen([VAR, `click`, S => {
 
-							let Slot = Tools.typen(VAR.parentNode.id);
+                            let Slot = Tools.typen(VAR.parentNode.id);
 
-							let METER = document.querySelector(`.g${Slot[0]} .scale`).children;
+                            let METER = document.querySelector(`.g${Slot[0]} .scale`).children;
 
-							let Box = Tools.typen(Clients.box), float = 0, items = 0, bag = 0;
+                            let Box = Tools.typen(Clients.box), float = 0, items = 0, bag = 0;
 
-							if (VAR.getAttribute(`role`) === `-`) {
+                            if (VAR.getAttribute(`role`) === `-`) {
 
-								if (Tools.typen(Clients.box)[Slot[0]] && Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
+                                if (Tools.typen(Clients.box)[Slot[0]] && Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
 
-									Box = Tools.typen(Clients.box);
+                                    Box = Tools.typen(Clients.box);
 
-									Box[Slot[0]].objs[Slot[1]][1] -= 1;
+                                    Box[Slot[0]].objs[Slot[1]][1] -= 1;
 
-									if (Box[Slot[0]].objs[Slot[1]][1] === 0) {
+                                    if (Box[Slot[0]].objs[Slot[1]][1] === 0) {
 
-										let Objs = {};
+                                        let Objs = {};
 
-										for (let obj in Box[Slot[0]].objs) {
+                                        for (let obj in Box[Slot[0]].objs) {
 
-											if (obj !== Slot[1]) Objs[obj] = Box[Slot[0]].objs[obj];
-										}
+                                            if (obj !== Slot[1]) Objs[obj] = Box[Slot[0]].objs[obj];
+                                        }
 
-										Box[Slot[0]].objs = Objs;
+                                        Box[Slot[0]].objs = Objs;
 
-										let Objects = {};
+                                        let Objects = {};
 
-										for (let item in Box) {
+                                        for (let item in Box) {
 
-											let objs = 0
+                                            let objs = 0
 
-											for (let obj in Box[item].objs) {objs++}
+                                            for (let obj in Box[item].objs) {objs++}
 
-											if (objs > 0) Objects[item] = Box[item];
-										}
+                                            if (objs > 0) Objects[item] = Box[item];
+                                        }
 
-										Box = Objects;
+                                        Box = Objects;
 
-										METER[0].style.display = `none`;
+                                        METER[0].style.display = `none`;
 
-										METER[1].style.display = `none`;
+                                        METER[1].style.display = `none`;
 
-										Clients.box = Tools.coats(Box);
+                                        Clients.box = Tools.coats(Box);
 
-										boxup();
-									}
+                                        boxup();
+                                    }
 
-									Clients.box = Tools.coats(Box);
+                                    Clients.box = Tools.coats(Box);
 
-									if (Box[Slot[0]]) {
+                                    if (Box[Slot[0]]) {
 
-										for (let item in Box[Slot[0]].objs) {items += parseFloat(Box[Slot[0]].objs[item][1])}
+                                        for (let item in Box[Slot[0]].objs) {items += parseFloat(Box[Slot[0]].objs[item][1])}
 
-										METER[1].innerText = items;
+                                        METER[1].innerText = items;
 
-										METER[0].style.display = `flex`;
+                                        METER[0].style.display = `flex`;
 
-										METER[1].style.display = `flex`;
-									}
+                                        METER[1].style.display = `flex`;
+                                    }
 
-									VAR.nextSibling.innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: Box[Slot[0]].objs[Slot[1]][1];
+                                    VAR.nextSibling.innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: Box[Slot[0]].objs[Slot[1]][1];
 
-									VAR.parentNode.parentNode.querySelector(`.sum`).innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
-								}
-							}
+                                    VAR.parentNode.parentNode.querySelector(`.sum`).innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
+                                }
+                            }
 
-							if (VAR.getAttribute(`role`) === `+`) {
+                            if (VAR.getAttribute(`role`) === `+`) {
 
-								if (Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
+                                if (Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
 
-									Box[Slot[0]].objs[Slot[1]][1] += 1;
+                                    Box[Slot[0]].objs[Slot[1]][1] += 1;
 
-									Clients.box = Tools.coats(Box);
-								}
+                                    Clients.box = Tools.coats(Box);
+                                }
 
-								VAR.previousSibling.innerText = Box[Slot[0]].objs[Slot[1]][1];
+                                VAR.previousSibling.innerText = Box[Slot[0]].objs[Slot[1]][1];
 
-								VAR.parentNode.parentNode.querySelector(`.sum`).innerText = parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
-							
-								for (let item in Box[Slot[0]].objs) {items += parseFloat(Box[Slot[0]].objs[item][1])}
+                                VAR.parentNode.parentNode.querySelector(`.sum`).innerText = parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
+                            
+                                for (let item in Box[Slot[0]].objs) {items += parseFloat(Box[Slot[0]].objs[item][1])}
 
-								METER[1].innerText = items;
+                                METER[1].innerText = items;
 
-								METER[0].style.display = `flex`;
+                                METER[0].style.display = `flex`;
 
-								METER[1].style.display = `flex`;
-							}
+                                METER[1].style.display = `flex`;
+                            }
 
-							for (let item in Box) {
+                            for (let item in Box) {
 
-								++bag;
+                                ++bag;
 
-								for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
-							}
+                                for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
+                            }
 
-							document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
+                            document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
 
-							document.querySelector(`#total`).innerText = float.toFixed(2);
-						}]);
-					});
-				}
+                            document.querySelector(`#total`).innerText = float.toFixed(2);
+                        }]);
+                    });
+                }
 
-				this.listen([document.querySelector(`#paymug`), `click`, S => {
-				
-					if (!Clients.mug) {
+                this.listen([document.querySelector(`#paymug`), `click`, S => {
+                
+                    if (!Clients.mug) {
 
-						View.pop();
+                        View.pop();
 
-						View.DOM([`#modal`, [Models.app.inputMug([0])]]);
+                        View.DOM([`#modal`, [Models.app.inputMug([0])]]);
 
-						this.mug();
-					}
+                        this.mug();
+                    }
 
-					if (Clients.mug) {
+                    if (Clients.mug) {
 
-						View.pop();
+                        View.pop();
 
-						View.DOM([`#modal`, [Models.app.pay()]]);
+                        View.DOM([`#modal`, [Models.app.pay()]]);
 
-						let Box = Tools.typen(Clients.box), float = 0;
+                        let Box = Tools.typen(Clients.box), float = 0;
 
-						for (let item in Box) {
+                        for (let item in Box) {
 
-							for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
-						}
+                            for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
+                        }
 
-						document.querySelector(`#total`).innerText = float.toFixed(2);
+                        document.querySelector(`#total`).innerText = float.toFixed(2);
 
-						this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
+                        this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
 
-							let Slot = this.getSource(S);
+                            let Slot = this.getSource(S);
 
-							if (!parseInt(Slot.value)) Slot.value = 0;
+                            if (!parseInt(Slot.value)) Slot.value = 0;
 
-							if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
+                            if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
 
-							Slot.value = parseInt(Slot.value);
-						}]);
+                            Slot.value = parseInt(Slot.value);
+                        }]);
 
-						this.listen([document.querySelector(`#mpesa`), `click`, S => {
+                        this.listen([document.querySelector(`#mpesa`), `click`, S => {
 
-							let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
+                            let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
 
-							if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
+                            if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
 
-							let XHR = [];
+                            let XHR = [];
 
-							XHR[0] = Tools.pull([
-								`/json/web/`, { 
-									box: Tools.typen(Clients.box),
-									call: parseFloat(Values[0]),
-									flag: `incoming`,
-									float: parseFloat(float),
-									mug: Clients.mug, 
-									pull: `pay`}]);
+                            XHR[0] = Tools.pull([
+                                `/json/web/`, { 
+                                    box: Tools.typen(Clients.box),
+                                    call: parseFloat(Values[0]),
+                                    flag: `incoming`,
+                                    float: parseFloat(float),
+                                    mug: Clients.mug, 
+                                    pull: `pay`}]);
 
-							Values = [];
+                            Values = [];
 
-							document.querySelector(`#modal`).style.display = `none`
+                            document.querySelector(`#modal`).style.display = `none`
 
-							XHR[0].onload = () => {
+                            XHR[0].onload = () => {
 
-								XHR[1] = Tools.typen(XHR[0].response);
-							}
-						}]);
+                                XHR[1] = Tools.typen(XHR[0].response);
+                            }
+                        }]);
 
-						this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
-					}
-				}]);
+                        this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
+                    }
+                }]);
 
-				this.listen([document.querySelector(`#boxClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
-			}
+                this.listen([document.querySelector(`#boxClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
+            }
 
-			boxup();
-		}]);
-	}
+            boxup();
+        }]);
 
-	mug () {
+    setInterval(() => { 
 
-		if (document.querySelector(`#modalMugin`)) {
+      let ts = new Date().valueOf();
 
-			this.listen([document.querySelector(`#modalMugin`), `click`, S => {
+      if (Tools.typen(Clients.incoming).length > 0 && Clients.mug) { io().emit(`incoming`, [Clients.mug, Tools.typen(Clients.incoming)])}
+    }, 5000);
 
-				View.pop();
+    io().on(`incoming`, Obj => { if (Clients.mug && Clients.mug === Obj[0]) { Clients.incoming = Tools.coats(Obj[1]) } });   
+  }
 
-				View.DOM([`#modal`, [Models.app.inputMug([2])]]);
+  mug () {
 
-				this.mug()
-			}]);
-		}
+        if (document.querySelector(`#modalMugin`)) {
 
-		if (document.querySelector(`#modalMugup`)) {
+            this.listen([document.querySelector(`#modalMugin`), `click`, S => {
 
-			this.listen([document.querySelector(`#modalMugup`), `click`, S => {
+                View.pop();
 
-				View.pop();
+                View.DOM([`#modal`, [Models.app.inputMug([2])]]);
 
-				View.DOM([`#modal`, [Models.app.inputMug([0])]]);
+                this.mug()
+            }]);
+        }
 
-				this.mug()
-			}]);
-		}
+        if (document.querySelector(`#modalMugup`)) {
 
-		if (document.querySelector(`#emailAvail`)) {
+            this.listen([document.querySelector(`#modalMugup`), `click`, S => {
 
-			this.listen([document.querySelector(`#emailAvail`), `click`, S => {
+                View.pop();
 
-				if (!Tools.slim(document.querySelector(`input#email`).value) === true) return;
+                View.DOM([`#modal`, [Models.app.inputMug([0])]]);
 
-				let XHR = Tools.pull([
-					`/json/web`, {email: document.querySelector(`input#email`).value, flag: `emailAvail`, pull: `mug`}]);
+                this.mug()
+            }]);
+        }
 
-				document.querySelector(`input#email`).value = ``;
+        if (document.querySelector(`#emailAvail`)) {
 
-				XHR.onload = () => {
+            this.listen([document.querySelector(`#emailAvail`), `click`, S => {
 
-					let Obj = Tools.typen(XHR.response);
+                if (!Tools.slim(document.querySelector(`input#email`).value) === true) return;
 
-					if (Obj.email) {
+                let XHR = Tools.pull([
+                    `/json/web`, {email: document.querySelector(`input#email`).value, flag: `emailAvail`, pull: `mug`}]);
 
-						View.pop();
+                document.querySelector(`input#email`).value = ``;
 
-						View.DOM([`#modal`, [Models.app.inputMug([1])]]);
+                XHR.onload = () => {
 
-						this.listen([document.querySelector(`#saltAvail`), `click`, S => {
+                    let Obj = Tools.typen(XHR.response);
 
-							if (!Tools.slim(document.querySelector(`input#lock`).value) === true) return;
+                    if (Obj.email) {
 
-							let XHR = Tools.pull([
-								`/json/web`, {email: Obj.email, salt: document.querySelector(`input#lock`).value, flag: `saltAvail`, pull: `mug`}]);
+                        View.pop();
 
-							XHR.onload = () => {
+                        View.DOM([`#modal`, [Models.app.inputMug([1])]]);
 
-								let Obj = Tools.typen(XHR.response);
+                        this.listen([document.querySelector(`#saltAvail`), `click`, S => {
 
-								if (Obj && Obj.md) {
+                            if (!Tools.slim(document.querySelector(`input#lock`).value) === true) return;
 
-									Clients.mug = Obj.md;
+                            let XHR = Tools.pull([
+                                `/json/web`, {email: Obj.email, salt: document.querySelector(`input#lock`).value, flag: `saltAvail`, pull: `mug`}]);
 
-									window.location = window.location;
-								}
-							}
-						}]);
-					}
-				}
-			}]);
-		}
+                            XHR.onload = () => {
 
-		if (document.querySelector(`#emailSalt`)) {
+                                let Obj = Tools.typen(XHR.response);
 
-			this.listen([document.querySelector(`#emailSalt`), `click`, S => {
+                                if (Obj && Obj.md) {
 
-				if (!Tools.slim(document.querySelector(`input#email`).value) === true || !Tools.slim(document.querySelector(`input#salt`).value) === true) return;
+                                    Clients.mug = Obj.md;
 
-				let XHR = Tools.pull([
-					`/json/web`, {
-						email: document.querySelector(`input#email`).value, flag: `emailSalt`, pull: `mug`, salt: document.querySelector(`input#salt`).value}]);
+                                    window.location = window.location;
+                                }
+                            }
+                        }]);
+                    }
+                }
+            }]);
+        }
 
-				XHR.onload = () => {
+        if (document.querySelector(`#emailSalt`)) {
 
-					let Obj = Tools.typen(XHR.response);
+            this.listen([document.querySelector(`#emailSalt`), `click`, S => {
 
-					if (Obj && Obj.md) {
+                if (!Tools.slim(document.querySelector(`input#email`).value) === true || !Tools.slim(document.querySelector(`input#salt`).value) === true) return;
 
-						Clients.mug = Obj.md;
+                let XHR = Tools.pull([
+                    `/json/web`, {
+                        email: document.querySelector(`input#email`).value, flag: `emailSalt`, pull: `mug`, salt: document.querySelector(`input#salt`).value}]);
 
-						window.location = window.location;
-					}
-				}
-			}]);
-		}
-	}
+                XHR.onload = () => {
+
+                    let Obj = Tools.typen(XHR.response);
+
+                    if (Obj && Obj.md) {
+
+                        Clients.mug = Obj.md;
+
+                        window.location = window.location;
+                    }
+                }
+            }]);
+        }
+    }
 }
 
 Event = new Event;

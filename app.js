@@ -8,7 +8,7 @@ const { readFileSync, statSync, writeFileSync } = require(`fs`);
 
 const { Constants, Sql, Tools } = require(`./tools`);
 
-const { Call, io, pollPay} = require(`./route`);
+const { Call, io } = require(`./route`);
 
 //const { SMTPServer } = require(`smtp-server`);
 
@@ -28,8 +28,6 @@ App.listen(8124);
 io(require(`socket.io`)(App));
 
 Tools.csv();
-
-pollPay();
 
 /**
 
