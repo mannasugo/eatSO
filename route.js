@@ -180,8 +180,8 @@ class Route {
 
                     let ts = new Date().valueOf();
 
-                    let md = createHash(`md5`).update(`${ts}`, `utf8`).digest(`hex`);console.log(Pay.inta)
-
+                    let md = createHash(`md5`).update(`${ts}`, `utf8`).digest(`hex`);
+                    
                     Pay.inta.collection()
                       .mpesaStkPush({
                         email: Raw.mugs[1][Pulls.mug].email,
@@ -189,7 +189,7 @@ class Route {
                         amount: parseFloat(Pulls.float),
                         phone_number: `254` + Pulls.call,
                         api_ref: md})
-                      .then((Blob) => {console.log(Blob)
+                      .then((Blob) => {
 
                       if (Blob.id) {
 

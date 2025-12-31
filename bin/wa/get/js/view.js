@@ -61,35 +61,35 @@ class View {
 
 let Models = {
 
-    app: {
+  app: {
 
-        a: (Obj) => {
+    a: (Obj) => {
 
-            let DOM = [[]];
+      let DOM = [[]];
 
-            if (!Clients.box) {Clients.box = Tools.coats({})}
+      if (!Clients.box) {Clients.box = Tools.coats({})}
 
-            let Box = Tools.typen(Clients.box);
+      let Box = Tools.typen(Clients.box);
 
-            Obj.catalog.forEach(Cat => {
+      Obj.catalog.forEach(Cat => {
 
-                if (new Date().valueOf() > DAY + parseFloat(Cat.avail[0])*60*60000 && new Date().valueOf() < DAY + parseFloat(Cat.avail[1])*60*60000) {
+        if (new Date().valueOf() > DAY + parseFloat(Cat.avail[0])*60*60000 && new Date().valueOf() < DAY + parseFloat(Cat.avail[1])*60*60000) {
 
-                    let State = [0, `none`];
+          let State = [0, `none`];
 
-                    if (Box[Cat.ts]) {
+          if (Box[Cat.ts]) {
 
-                        for (let item in Box[Cat.ts].objs) {State[0] += parseFloat(Box[Cat.ts].objs[item][1])}
+            for (let item in Box[Cat.ts].objs) {State[0] += parseFloat(Box[Cat.ts].objs[item][1])}
 
-                        if (State[0] > 0) {State[1] = `flex`};
-                    }
+            if (State[0] > 0) {State[1] = `flex`};
+          }
                 
-                    DOM[0].push([`div`, {id: Cat.ts, class: `g${Cat.ts}`, style: {height: `${180}px`, [`justify-content`]: `end`, [`margin-bottom`]: `${24}px`}}, 
-                        [[`img`, {src: `wa/get/catalog/${Cat.img}`, style: {margin: `${0} auto ${8}px`, width: `${70}%`}}],
-                        [`div`, {class: `_gxM`, style: {[`font-family`]: ``,[`font-size`]: `${12.88}px`, [`font-weight`]: 600}}, 
+          DOM[0].push([`div`, {id: Cat.ts, class: `g${Cat.ts}`, style: {height: `${180}px`, [`justify-content`]: `end`, [`margin-bottom`]: `${24}px`}}, 
+            [[`img`, {src: `wa/get/catalog/${Cat.img}`, style: {margin: `${0} auto ${8}px`, width: `${70}%`}}],
+            [`div`, {class: `_gxM`, style: {[`font-family`]: ``,[`font-size`]: `${12.88}px`, [`font-weight`]: 600}}, 
                             [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Cat.objs[0][1]).toFixed(2)}`]]],
                         [`span`, {style: {[`font-family`]: ``,[`font-size`]: `${11}px`, margin: `${4}px ${0}`, overflow: `hidden`, [`text-transform`]: `capitalize`, [`text-overflow`]: `ellipsis`, [`white-space`]: `nowrap`}}, Cat.label.replaceAll(`_`, ` `)],
-                        [`span`, {style: {[`font-size`]: `${10}px`}}, Cat.objs[0][0] + Cat.mass.toLowerCase()],
+                        [`span`, {style: {[`font-size`]: `${9}px`}}, Cat.objs[0][0] + Cat.mass],
                         [`div`, {id: Cat.objs[0][0], class: `_geQ scale`, style: {background: `#000000e3`, top: 0, color: `#fff`, position: `absolute`, right: 0}}, 
                             [[`svg`, {class: `box`, role: `-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, display: State[1], height: `${11}px`, margin: `${8}px`, width: `${11}px`}}, 
                                 [[`path`, {fill: `#000`, stroke: `#fff`, [`stroke-width`]: 1, d: `M0 12 24 12 `}]]], 
@@ -130,27 +130,27 @@ let Models = {
                             [`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `popular this hour`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]],
                                 /*[`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `order it again`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]]*/]], 
                         [`div`, {id: `modal`, style: {background: `rgba(${217}, ${217}, ${217}, ${0.8})`, bottom: 0, display: `none`, position: `fixed`, top: 0, width: `${100}%`, [`z-index`]: 18}}]]];
-        }, 
+    }, 
 
-        boxup: () => {
+    boxup: () => {
 
-            if (!Clients.box) {Clients.box = Tools.coats({})}
+      if (!Clients.box) {Clients.box = Tools.coats({})}
 
-            let DOM = [[], []], float = 0, items = 0;
+      let DOM = [[], []], float = 0, items = 0;
 
-            for (let item in Tools.typen(Clients.box)) {
+      for (let item in Tools.typen(Clients.box)) {
 
-                ++items;
+        ++items;
 
-                DOM[1] = [];
+        DOM[1] = [];
 
-                for (let sub in Tools.typen(Clients.box)[item].objs) {
+        for (let sub in Tools.typen(Clients.box)[item].objs) {
 
                     float += parseFloat(parseFloat(Tools.typen(Clients.box)[item].objs[sub][0])*parseFloat(Tools.typen(Clients.box)[item].objs[sub][1]))
 
                     DOM[1].push([`div`, {class: `_gxM _geQ`, style: {margin: `${4}px ${0}`}}, 
                         [
-                            [`span`, {style: {[`font-size`]: `${11}px`, [`font-weight`]: 600, [`text-transform`]: `lowercase`}}, `${sub}${Tools.typen(Clients.box)[item].mass}`], 
+                            [`span`, {style: {[`font-size`]: `${10}px`, [`font-weight`]: 600, [`text-transform`]: ``}}, `${sub}${Tools.typen(Clients.box)[item].mass}`], 
                             [`div`, {class: `_gZz`}, 
                                 [[`div`, {}, 
                                     [
@@ -200,9 +200,9 @@ let Models = {
                                 [`div`, {style: {display: (!Clients.mug)? `flex`: `none`, [`margin-bottom`]: `${12}px`}}, 
                                     [[`span`, {style: {[`font-size`]: `${13}px`}}, `Almost There`], [`span`, {style: {color: `#747474`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Signin or Signup to place an order`]]],
                                 [`a`, {id: `paymug`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13}px`, [`font-weight`]: 300, [`padding`]: `${12}px`, [`text-align`]: `center`, [`text-transform`]: `uppercase`, width: `${100}%`}}, (!Clients.mug)? `Continue`: `proceed to checkout`]]]]]]]
-        }, 
+    }, 
 
-        inputMug: (Arg) => {
+    inputMug: (Arg) => {
 
             let DOM = [];
 
@@ -241,19 +241,19 @@ let Models = {
             return [`main`, {style: {background: `#fff`, margin: `auto`, [`max-width`]: `${400}px`, width: `${100}%`}}, 
                 [[`section`, {style: {[`font-family`]: `qb`, margin: `${24}px`, [`max-width`]: `${100}%`}}, 
                     [[`h1`, {style: {color: `#eb6538`, [`font-family`]: `qb`, [`font-size`]: `${28}px`}}, `Sojava`], DOM[Arg[0]]]]]]
-        },
+    },
 
-        multi: (Obj) => {
+    multi: (Obj) => {
 
-            let DOM = [[]];
+      let DOM = [[]];
 
-            Obj.objs.forEach(Value => {
+      Obj.objs.forEach(Value => {
 
-                DOM[0].push([`div`, {id: Value[0], class: `_gxM _geQ`, style: {margin: `${6}px ${0}`}}, 
+        DOM[0].push([`div`, {id: Value[0], class: `_gxM _geQ`, style: {margin: `${6}px ${0}`}}, 
                     [
                         [`div`, {}, 
                             [
-                                [`span`, {style: {[`font-size`]: `${11}px`, [`font-weight`]: 600}}, Value[0] + Obj.mass.toLowerCase()],
+                                [`span`, {style: {[`font-size`]: `${10}px`, [`font-weight`]: 300, [`text-transform`]: `uppercase`}}, Value[0] + `` + Obj.mass.toLowerCase()],
                                 [`div`, {class: `_gxM`, style: {[`font-family`]: ``, [`font-size`]: `${12.88}px`, [`margin-top`]: `${4}px`}}, 
                                     [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Value[1]).toFixed(2)}`]]]]], 
                         [`div`, {class: `_gZz`}, 
