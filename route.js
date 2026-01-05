@@ -108,6 +108,21 @@ class Route {
                 Arg[1].end(Tools.coats({catalog: Objs, incoming: Via}));
               }
 
+              if (Pulls.pull === `incoming`) {
+
+                let Via = [];
+
+                if (Raw.mugs[1][Pulls.mug]) {
+
+                  Raw.incoming[0].forEach(Obj => {
+
+                    if (Obj.mug === Pulls.mug) {Via.push(Obj)}
+                  });
+
+                  Arg[1].end(Tools.coats({incoming: Via}));
+                }
+              }
+
               if (Pulls.pull === `mug`) { 
 
                 if (Pulls.flag === `emailAvail`) {

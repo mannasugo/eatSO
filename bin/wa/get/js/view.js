@@ -4,9 +4,9 @@ const DAY = new Date(`${new Date().getFullYear()}-${new Date().getMonth() + 1}-$
 
 class View {
 
-    constructor() {this.appendString = ``}
+  constructor() {this.appendString = ``}
 
-    ModelDOM(Model) {
+  ModelDOM(Model) {
 
         if (typeof Model !== `object`) return;
 
@@ -54,9 +54,9 @@ class View {
         return Tools.plains(this.appendString);
     }
 
-    DOM(Arg) { document.querySelector(Arg[0]).innerHTML = this.ModelDOM(Arg[1]) }
+  DOM(Arg) { document.querySelector(Arg[0]).innerHTML = this.ModelDOM(Arg[1]) }
 
-    pop () {this.appendString = ``};
+  pop () {this.appendString = ``};
 }
 
 let Models = {
@@ -96,40 +96,37 @@ let Models = {
                             [`span`, {style: {background: `#fff`, color: `#000`, display: State[1], [`font-family`]: `insvg`, [`font-size`]: `${10.88}px`, [`justify-content`]: `center`, padding: `${8}px`, width: `${100}%`}}, `${State[0]}`],
                             [`svg`, {class: `box`, role: `+`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${11}px`, margin: `${8}px`, width: `${11}px`}}, 
                                 [[`path`, {fill: `#000`, stroke: `#fff`, [`stroke-width`]: 1, d: `M0 12 24 12 M12 0 12 24`}]]]]]]])
-                }
-            });
+        }
+      });
 
-            let BAG = [0];
+      let BAG = [0];
 
-            for (let item in Box) {++BAG[0]}
+      for (let item in Box) {++BAG[0]}
 
-            return [
-                `main`, {id: `app`, class: `_tY0`, style: {background: `#fff`, color: `#000`, [`font-family`]: `intext`, [`font-size`]: `${13.3333}px`, height: `${100}%`}}, 
-                    [
-                        [`div`, {style: {background: `#fff`, [`border-bottom`]: `${1}px solid #ececec`, height: `${48}px`, padding: `${0}px ${24}px`, position: `fixed`, width: `${100}%`, [`z-index`]: 11}}, 
-                            [[`div`, {class: `_gxM _geQ`}, 
-                                [
-                                    [`span`, {style: {[`background-image`]: `url(wa/get/png/eatso.png)`, [`background-size`]: `${20}px`, height: `${20}px`, width: `${20}px`}}], 
-                                    //[`div`, {class: `_eYG`, style: {[`margin-left`]: `${24}px`}}, [[`span`, {style: {[`font-family`]: `es`, [`font-size`]: `${12}px`, [`font-weight`]: 600}}, `eatso`]]],  
-                                    [`div`, {class: `_eYG`}, []], 
-                                    [`div`, {class: `_gZz`, style: {}}, 
-                                        [[`svg`, {id: `menu-box`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${24}px`, width: `${24}px`}}, 
-                                            [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, 
-                                                [[`path`, {fill: `#fff`, d: `M0 2 3 2 8 19 16 19`}], 
-                                                [`circle`, {r: 1.9, cx: 7.5, cy: 20.9}], 
-                                                [`circle`, {r: 1.9, cx: 16.5, cy: 20.9}], 
-                                                [`path`, {fill: `none`, d: `M6 13 17 13 20 4 6 4`}]]]]],
-                                        [`div`, {id: `menu-box-list`, style: {background: `#fff`, border: `${1}px solid #f0f0f0de`, [`border-radius`]: `${2}px`, [`box-shadow`]: `${0} ${8}px ${64}px ${4}px rgba(${10},${14},${29},${.08})`, display: `none`, [`min-width`]: `${240}px`, position: `absolute`, right: 0, top: `${38}px`, [`z-index`]: 24}}, 
-                                            [[`div`, {}, 
-                                                [[`a`, {id: `boxup`, class: `_gxM _geQ`, href: `javascript:;`, style: {display: `flex`, padding: `${12}px ${20}px`}}, 
-                                                    [[`span`, {style: {color: `#7d7d7d`, [`font-family`]: `qb`}}, `SHOPPING BAG`], [`div`, {class: `_gZz`}, `${BAG[0]}`]]],
-                                                [`a`, {class: `_gxM _geQ`, href: `javascript:;`, style: {[`border-top`]: `1px solid #f0f0f0de`, display: /*(Clients.mug)? `flex`:*/ `none`, padding: `${12}px ${20}px`}}, 
-                                                    [[`span`, {style: {color: `#7d7d7d`, [`font-family`]: `qb`}}, `OPEN ORDERS`], [`div`, {class: `_gZz`}, `4`]]]]]]]]]]]]], 
-                        [`div`, {style: {margin: `${71}px ${24}px`}}, 
-                            [
-                            [`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `popular this hour`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]],
-                                /*[`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `order it again`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]]*/]], 
-                        [`div`, {id: `modal`, style: {background: `rgba(${217}, ${217}, ${217}, ${0.8})`, bottom: 0, display: `none`, position: `fixed`, top: 0, width: `${100}%`, [`z-index`]: 18}}]]];
+      return [
+            `main`, {id: `app`, class: `_tY0`, style: {background: `#fff`, color: `#000`, [`font-family`]: `intext`, [`font-size`]: `${13.3333}px`, height: `${100}%`}}, 
+              [[`div`, {style: {background: `#fff`, [`border-bottom`]: `${1}px solid #ececec`, height: `${48}px`, padding: `${0}px ${24}px`, position: `fixed`, width: `${100}%`, [`z-index`]: 11}}, 
+                [[`div`, {class: `_gxM _geQ`}, 
+                  [[`span`, {style: {[`background-image`]: `url(wa/get/png/eatso.png)`, [`background-size`]: `${20}px`, height: `${20}px`, width: `${20}px`}}], 
+                  [`div`, {class: `_eYG`, style: {[`margin-left`]: `${12}px`}}, [[`h1`, {style: {[`color`]: `#eb6538`, [`font-size`]: `${12}px`, [`font-weight`]: 600}}, `SOJAVA`]]],  
+                  [`div`, {class: `_eYG`}, []], 
+                  [`div`, {class: `_gZz`, style: {}}, 
+                    [[`svg`, {id: `menu-box`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${24}px`, width: `${24}px`}}, 
+                      [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, 
+                        [[`path`, {fill: `#fff`, d: `M0 2 3 2 8 19 16 19`}], 
+                        [`circle`, {r: 1.9, cx: 7.5, cy: 20.9}], 
+                        [`circle`, {r: 1.9, cx: 16.5, cy: 20.9}], 
+                        [`path`, {fill: `none`, d: `M6 13 17 13 20 4 6 4`}]]]]],
+                    [`div`, {id: `menu-box-list`, style: {background: `#fff`, border: `${1}px solid #f0f0f0de`, [`border-radius`]: `${2}px`, [`box-shadow`]: `${0} ${8}px ${64}px ${4}px rgba(${10},${14},${29},${.08})`, display: `none`, [`font-size`]: `${12}px`, [`min-width`]: `${240}px`, position: `absolute`, right: 0, top: `${38}px`, [`z-index`]: 24}}, 
+                      [[`div`, {}, 
+                        [[`a`, {id: `boxup`, class: `_gxM _geQ`, href: `javascript:;`, style: {display: `flex`, padding: `${12}px ${20}px`}}, 
+                          [[`span`, {style: {color: `#000`, [`font-family`]: ``}}, `SHOPPING CART`], [`div`, {class: `_gZz`}, `${BAG[0]}`]]],
+                    [`a`, {id: `incoming`, class: `_gxM _geQ`, href: `javascript:;`, style: {[`border-top`]: `1px solid #f0f0f0de`, display: `flex`, padding: `${12}px ${20}px`}}, 
+                      [[`span`, {style: {color: `#000`, [`font-family`]: ``}}, `MY ORDERS`], [`div`, {class: `_gZz`}, `0`]]]]]]]]]]]]], 
+              [`div`, {style: {margin: `${71}px ${24}px`}}, 
+                [[`section`, {}, [[`h2`, {style: {[`font-family`]: ``, [`text-transform`]: `uppercase`}}, `popular this hour`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]],
+                /*[`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `order it again`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]]*/]], 
+                [`div`, {id: `modal`, style: {background: `rgba(${217}, ${217}, ${217}, ${0.8})`, bottom: 0, display: `none`, position: `fixed`, top: 0, width: `${100}%`, [`z-index`]: 18}}]]];
     }, 
 
     boxup: () => {
@@ -199,7 +196,43 @@ let Models = {
                                                 [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `total`}, `${parseFloat(float).toFixed(2)}`]]]]]]],
                                 [`div`, {style: {display: (!Clients.mug)? `flex`: `none`, [`margin-bottom`]: `${12}px`}}, 
                                     [[`span`, {style: {[`font-size`]: `${13}px`}}, `Almost There`], [`span`, {style: {color: `#747474`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Signin or Signup to place an order`]]],
-                                [`a`, {id: `paymug`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13}px`, [`font-weight`]: 300, [`padding`]: `${12}px`, [`text-align`]: `center`, [`text-transform`]: `uppercase`, width: `${100}%`}}, (!Clients.mug)? `Continue`: `proceed to checkout`]]]]]]]
+                                [`a`, {id: `paymug`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13}px`, [`font-weight`]: 300, [`padding`]: `${12}px`, [`text-align`]: `center`, [`text-transform`]: `uppercase`, width: `${100}%`}}, (!Clients.mug)? `Continue`: `proceed to checkout`]]]]]]];
+    },
+
+    incoming: (Arg) => {
+
+      let DOM = [[]];
+
+      Arg.forEach(Obj => {
+
+        let DOM2 = [];
+
+        for (let img in Obj.info) {
+
+          DOM2.push([`img`, {src: `wa/get/catalog/${img}.png`, style: {margin: `${0} ${8}px ${0} ${0}`, width: `${24}px`}}]);
+        }
+
+        DOM[0].push([`div`, {}, 
+          [[`div`, {class: `_gxM _geQ`, style: {margin: `${12}px ${0}px`}}, 
+            [[`div`, {class: `_gxM _geQ`}, DOM2]]], 
+          [`div`, {class: `_gxM`}, 
+            [[`a`, {href: `javascript:;`, style: {[`align-self`]: `end`, [`font-size`]: `${10.88}px`, [`text-decoration`]: `underline`, [`text-transform`]: `uppercase`}}, `${Obj.md}`],
+            [`div`, {class: `_gZz`}, 
+              [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], 
+              [`span`, {}, `${Obj.float}`]]]]]]]);
+      });
+
+      return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, top: 0, width: `${100}%`}}, 
+        [[`div`, {style: {width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`div`, {style: {[`font-weight`]: 300}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `MY ORDERS`],
+                [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
+            [`div`, {class: `_gZz`}, 
+              [[`svg`, {id: `incoming-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
+                [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
+          [`div`, {style: {height: `calc(100vh)`, [`max-height`]: `calc(100vh - 0px)`, [`overflow-y`]: `scroll`, padding: `${0}px ${16}px`}}, DOM[0]]]]]];
+
     }, 
 
     inputMug: (Arg) => {
