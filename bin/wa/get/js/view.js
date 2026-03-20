@@ -298,13 +298,13 @@ let Models = {
                                     [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `+`]]]]]]]);
             });
 
-            return [`div`, {style: {bottom: 0, left: 0, margin: `auto`, [`max-width`]: `${480}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
+        return [`div`, {style: {bottom: 0, left: 0, margin: `auto`, [`max-width`]: `${480}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
                 [[`div`, {style: {background: `#fff`, width: `${100}%`}}, 
                     [
                         [`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
                             [
                                 [`img`, {src: `wa/get/catalog/${Obj.img}`, style: {[`width`]: `${36}px`}}], 
-                                [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}}, 
+                                [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}},  
                                     [
                                         [`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Obj.label.replaceAll(`_`, ` `)],
                                         [`span`, {style: {color: `#9d9d9d`, [`font-family`]: ``, [`font-size`]: `${9}px`, [`margin-top`]: `${6}px`}}, `${Obj.objs.length} OPTIONS AVAILABLE`]]], 
