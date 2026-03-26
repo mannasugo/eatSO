@@ -55,8 +55,14 @@
   font-family: intext;
   font-style: normal;
   font-weight: 100;
-  src: url(/wa/get/font/AGB.otf) format("opentype")
-  
+  src: url(/wa/get/font/AGB.otf) format("opentype")  
+}
+
+@font-face {
+  font-family: osq;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/wa/get/font/opensq.woff2) format("woff2")
 }
 
 a, article, body, div, footer, form, h1, h2, h3, h4, header, html, img, label, li, nav, p, section, span, time, ul {
