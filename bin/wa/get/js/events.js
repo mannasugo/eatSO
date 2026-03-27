@@ -27,11 +27,11 @@ class Event {
 
     document.querySelectorAll(`.box`).forEach((VAR, NODE) => {
 
-            this.listen([VAR, `click`, S => {
+      this.listen([VAR, `click`, S => {
 
-                let Slot = VAR.parentNode.parentNode;
+        let Slot = VAR.parentNode.parentNode;
 
-                let METER = VAR.parentNode.children;
+        let METER = VAR.parentNode.children;
 
                 if (!Clients.box) {Clients.box = Tools.coats({})}
 
@@ -244,25 +244,25 @@ class Event {
 
         document.querySelector(`#modal`).style.display = `flex`;
 
-                if (document.querySelector(`.multibox`)) {
+        if (document.querySelector(`.multibox`)) {
 
-                    document.querySelectorAll(`.multibox`).forEach(VAR => {
+          document.querySelectorAll(`.multibox`).forEach(VAR => {
 
-                        this.listen([VAR, `click`, S => {
+            this.listen([VAR, `click`, S => {
 
-                            let Slot = Tools.typen(VAR.parentNode.id);
+              let Slot = Tools.typen(VAR.parentNode.id);
 
-                            let METER = document.querySelector(`.g${Slot[0]} .scale`).children;
+              let METER = document.querySelector(`.g${Slot[0]} .scale`).children;
 
-                            let Box = Tools.typen(Clients.box), float = 0, items = 0, bag = 0;
+              let Box = Tools.typen(Clients.box), float = 0, items = 0, bag = 0;
 
-                            if (VAR.getAttribute(`role`) === `-`) {
+              if (VAR.getAttribute(`role`) === `-`) {
 
-                                if (Tools.typen(Clients.box)[Slot[0]] && Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
+                if (Tools.typen(Clients.box)[Slot[0]] && Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
 
-                                    Box = Tools.typen(Clients.box);
+                  Box = Tools.typen(Clients.box);
 
-                                    Box[Slot[0]].objs[Slot[1]][1] -= 1;
+                  Box[Slot[0]].objs[Slot[1]][1] -= 1;
 
                                     if (Box[Slot[0]].objs[Slot[1]][1] === 0) {
 
@@ -313,17 +313,17 @@ class Event {
                                     VAR.nextSibling.innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: Box[Slot[0]].objs[Slot[1]][1];
 
                                     VAR.parentNode.parentNode.querySelector(`.sum`).innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
-                                }
-                            }
+                }
+              }
 
-                            if (VAR.getAttribute(`role`) === `+`) {
+              if (VAR.getAttribute(`role`) === `+`) {
 
-                                if (Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
+                if (Tools.typen(Clients.box)[Slot[0]].objs[Slot[1]]) {
 
                                     Box[Slot[0]].objs[Slot[1]][1] += 1;
 
                                     Clients.box = Tools.coats(Box);
-                                }
+                }
 
                                 VAR.previousSibling.innerText = Box[Slot[0]].objs[Slot[1]][1];
 
@@ -336,20 +336,20 @@ class Event {
                                 METER[0].style.display = `flex`;
 
                                 METER[1].style.display = `flex`;
-                            }
+              }
 
-                            for (let item in Box) {
+              for (let item in Box) {
 
-                                ++bag;
+                ++bag;
 
-                                for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
-                            }
+                for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
+              }
 
-                            document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
+              document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = bag;
 
-                            document.querySelector(`#total`).innerText = float.toFixed(2);
-                        }]);
-                    });
+              document.querySelector(`#total`).innerText = float.toFixed(2);
+            }]);
+          });
                 }
 
                 this.listen([document.querySelector(`#paymug`), `click`, S => {
@@ -448,6 +448,28 @@ class Event {
 
           this.listen([document.querySelector(`#incoming-`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
         }
+      }
+    }]);
+
+    this.listen([document.querySelector(`#mailbox`), `click`, S => {
+
+      let XHR = [];
+
+      XHR[0] = Tools.pull([
+        `/json/web/`, { 
+          mug: Clients.mug, pull: `mailbee`}]);
+
+      XHR[0].onload = () => {
+
+        XHR[1] = Tools.typen(XHR[0].response);
+
+        View.pop();
+
+        View.DOM([`#modal`, [Models.app.mailbox(XHR[1].mail)]]);
+
+        document.querySelector(`#modal`).style.display = `flex`;
+
+        this.listen([document.querySelector(`#boxClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
       }
     }]);
 
@@ -555,7 +577,7 @@ class Event {
                 }
             }]);
         }
-    }
+  }
 }
 
 Event = new Event;

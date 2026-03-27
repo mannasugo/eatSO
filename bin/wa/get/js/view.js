@@ -86,10 +86,10 @@ let Models = {
                 
           DOM[0].push([`div`, {id: Cat.ts, class: `g${Cat.ts}`, style: {height: `${180}px`, [`justify-content`]: `end`, [`margin-bottom`]: `${24}px`}}, 
             [[`img`, {src: `wa/get/catalog/${Cat.img}`, style: {margin: `${0} auto ${8}px`, width: `${70}%`}}],
-            [`div`, {class: `_gxM`, style: {[`font-family`]: ``,[`font-size`]: `${12.88}px`, [`font-weight`]: 600}}, 
-                            [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Cat.objs[0][1]).toFixed(2)}`]]],
-                        [`span`, {style: {[`font-family`]: ``,[`font-size`]: `${11}px`, margin: `${4}px ${0}`, overflow: `hidden`, [`text-transform`]: `capitalize`, [`text-overflow`]: `ellipsis`, [`white-space`]: `nowrap`}}, Cat.label.replaceAll(`_`, ` `)],
-                        [`span`, {style: {[`font-size`]: `${9}px`}}, Cat.objs[0][0] + Cat.mass],
+            [`div`, {class: `_gxM`, style: {[`font-family`]: `iintext`,[`font-size`]: `${12.88}px`, [`font-weight`]: 600}}, 
+              [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Cat.objs[0][1]).toFixed(2)}`]]],
+                        [`span`, {style: {[`font-family`]: ``,[`font-size`]: `${11.88}px`, margin: `${4}px ${0}`, overflow: `hidden`, [`text-transform`]: `capitalize`, [`text-overflow`]: `ellipsis`, [`white-space`]: `nowrap`}}, Cat.label.replaceAll(`_`, ` `)],
+                        [`span`, {style: {color: `#525252`, [`font-family`]: ``, [`font-size`]: `${9.88}px`}}, Cat.objs[0][0] + ` ` + Cat.mass],
                         [`div`, {id: Cat.objs[0][0], class: `_geQ scale`, style: {background: `#000000e3`, top: 0, color: `#fff`, position: `absolute`, right: 0}}, 
                             [[`svg`, {class: `box`, role: `-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, display: State[1], height: `${11}px`, margin: `${8}px`, width: `${11}px`}}, 
                                 [[`path`, {fill: `#000`, stroke: `#fff`, [`stroke-width`]: 1, d: `M0 12 24 12 `}]]], 
@@ -111,7 +111,11 @@ let Models = {
                 [`div`, {class: `_eYG`, style: {[`margin-left`]: `${12}px`}}, [[`h1`, {style: {[`color`]: `#eb6538`, [`font-size`]: `${12}px`, [`font-weight`]: 600}}, `SOJAVA`]]],  
                 [`div`, {class: `_eYG`}, []], 
                 [`div`, {class: `_gZz`, style: {}}, 
-                  [[`svg`, {id: `menu-box`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${24}px`, width: `${24}px`}}, 
+                  [[`div`, {style: {display: (Clients.mug)? `unset`: `none`}}, 
+                    [[`svg`, {id: `mailbox`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${24}px`, width: `${24}px`}}, 
+                      [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, [[`path`, {d: `M2 6 2 22 22 22 22 6 2 6 12 15 22 6`}]]]]], 
+                    [`span`, {style: {[`align-content`]: `center`, background: `#eb6538`, [`border-radius`]: `${100}%`, color: `#fff`, display: (Obj.mail > 0)? `unset`: `none`, [`font-family`]: `iintext`, [`font-size`]: `${9.88}px`, height: `${16}px`, [`letter-spacing`]: `normal`, position: `absolute`, right: `${-8}px`, [`text-align`]: `center`, width: `${16}px`}}, `${Obj.mail}`]]], 
+                  [`svg`, {id: `menu-box`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${24}px`, [`margin-left`]: `${12}px`, width: `${24}px`}}, 
                     [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, 
                       [[`path`, {fill: `#fff`, d: `M0 2 3 2 8 19 16 19`}], 
                       [`circle`, {r: 1.9, cx: 7.5, cy: 20.9}], 
@@ -121,7 +125,7 @@ let Models = {
                     [[`div`, {}, 
                       [[`a`, {id: `boxup`, class: `_gxM _geQ`, href: `javascript:;`, style: {display: `flex`, padding: `${12}px ${20}px`}}, 
                         [[`span`, {style: {color: `#000`, [`font-family`]: ``}}, `SHOPPING CART`], [`div`, {class: `_gZz`}, `${BAG[0]}`]]],
-                  [`a`, {id: `incoming`, class: `_gxM _geQ`, href: `javascript:;`, style: {[`border-top`]: `1px solid #f0f0f0de`, display: `flex`, padding: `${12}px ${20}px`}}, 
+                      [`a`, {id: `incoming`, class: `_gxM _geQ`, href: `javascript:;`, style: {[`border-top`]: `1px solid #f0f0f0de`, display: `flex`, padding: `${12}px ${20}px`}}, 
                     [[`span`, {style: {color: `#000`, [`font-family`]: ``}}, `MY ORDERS`], [`div`, {class: `_gZz`}, `0`]]]]]]]]]]]]], 
             [`div`, {style: {margin: `${71}px ${24}px`}}, 
               [[`section`, {}, [[`h2`, {style: {[`font-family`]: ``, [`text-transform`]: `uppercase`}}, `popular this hour`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]],
@@ -151,9 +155,9 @@ let Models = {
 
         for (let sub in Tools.typen(Clients.box)[item].objs) {
 
-                    float += parseFloat(parseFloat(Tools.typen(Clients.box)[item].objs[sub][0])*parseFloat(Tools.typen(Clients.box)[item].objs[sub][1]))
+          float += parseFloat(parseFloat(Tools.typen(Clients.box)[item].objs[sub][0])*parseFloat(Tools.typen(Clients.box)[item].objs[sub][1]))
 
-                    DOM[1].push([`div`, {class: `_gxM _geQ`, style: {margin: `${4}px ${0}`}}, 
+          DOM[1].push([`div`, {class: `_gxM _geQ`, style: {margin: `${4}px ${0}`}}, 
                         [
                             [`span`, {style: {[`font-size`]: `${10}px`, [`font-weight`]: 600, [`text-transform`]: ``}}, `${sub}${Tools.typen(Clients.box)[item].mass}`], 
                             [`div`, {class: `_gZz`}, 
@@ -168,40 +172,33 @@ let Models = {
                                                 [`span`, {style: {margin: `${0} ${12}px`, [`text-align`]: `center`, width: `${36}px`}}, (!Clients.box || !Tools.typen(Clients.box)[item] || !Tools.typen(Clients.box)[item].objs[sub])? `0`: `${Tools.typen(Clients.box)[item].objs[sub][1]}`],
                                                 [`svg`, {class: `multibox`, role: `+`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${20}px`, width: `${20}px`}}, 
                                                     [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `+`]]]]]]]]]]]);
-                }
+        }
 
-                DOM[0].push([`div`, {style: {margin: `${10}px ${0}px`}}, 
-                    [
-                        [`div`, {class: `_gxM _geQ`}, 
-                            [
-                                [`img`, {src: `wa/get/catalog/${item}.png`, style: {[`width`]: `${36}px`}}], 
-                                [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}}, 
-                                    [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Tools.typen(Clients.box)[item].label]]]]], 
-                        [`div`, {style: {[`margin-left`]: `${48}px`}}, DOM[1]]]]);
-            }//#eb6538
+        DOM[0].push([`div`, {style: {margin: `${10}px ${0}px`}}, 
+          [[`div`, {class: `_gxM _geQ`}, 
+            [[`img`, {src: `wa/get/catalog/${item}.png`, style: {[`width`]: `${36}px`}}], 
+            [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Tools.typen(Clients.box)[item].label]]]]], 
+          [`div`, {style: {[`margin-left`]: `${48}px`}}, DOM[1]]]]);
+      }//#eb6538
 
-            return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, top: 0, width: `${100}%`}}, 
-                [
-                    [`div`, {style: {width: `${100}%`}}, 
-                        [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
-                            [ 
-                                [`div`, {style: {[`font-weight`]: 300}}, 
-                                    [
-                                        [`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Review Cart`],
-                                        [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
-                                [`div`, {class: `_gZz`}, 
-                                    [[`svg`, {id: `boxClose`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
-                                        [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
-                        [`div`, {style: {height: `calc(100vh)`, [`max-height`]: `calc(100vh - 228px)`, [`overflow-y`]: `scroll`, padding: `${0}px ${16}px`}}, DOM[0]]]], 
-                    [`div`, {style: {background: `#fff`, bottom: 0, display: (items > 0)? `flex` :`none`, position: `absolute`, width: `${100}%`}}, 
-                        [[`div`, {style: {margin: `${24}px`}}, 
-                            [
-                                [`div`, {class: `_gxM _geQ`, style: {display: (items > 0)? `flex` :`none`, [`margin-bottom`]: `${12}px`}}, 
-                                    [
-                                        [`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Sub total`], 
-                                        [`div`, {class: `_gZz`}, 
-                                            [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
-                                                [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `total`}, `${parseFloat(float).toFixed(2)}`]]]]]]],
+      return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, top: 0, width: `${100}%`}}, 
+        [[`div`, {style: {width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`div`, {style: {[`font-weight`]: 300}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Review Cart`],
+              [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
+            [`div`, {class: `_gZz`}, 
+              [[`svg`, {id: `boxClose`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
+                [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
+          [`div`, {style: {height: `calc(100vh)`, [`max-height`]: `calc(100vh - 228px)`, [`overflow-y`]: `scroll`, padding: `${0}px ${16}px`}}, DOM[0]]]], 
+        [`div`, {style: {background: `#fff`, bottom: 0, display: (items > 0)? `flex` :`none`, position: `absolute`, width: `${100}%`}}, 
+          [[`div`, {style: {margin: `${24}px`}}, 
+            [[`div`, {class: `_gxM _geQ`, style: {display: (items > 0)? `flex` :`none`, [`margin-bottom`]: `${12}px`}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Sub total`], 
+              [`div`, {class: `_gZz`}, 
+                [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+                  [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `total`}, `${parseFloat(float).toFixed(2)}`]]]]]]],
                                 [`div`, {style: {display: (!Clients.mug)? `flex`: `none`, [`margin-bottom`]: `${12}px`}}, 
                                     [[`span`, {style: {[`font-size`]: `${13}px`}}, `Almost There`], [`span`, {style: {color: `#747474`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Signin or Signup to place an order`]]],
                                 [`a`, {id: `paymug`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13}px`, [`font-weight`]: 300, [`padding`]: `${12}px`, [`text-align`]: `center`, [`text-transform`]: `uppercase`, width: `${100}%`}}, (!Clients.mug)? `Continue`: `proceed to checkout`]]]]]]];
@@ -240,7 +237,6 @@ let Models = {
               [[`svg`, {id: `incoming-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
                 [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
           [`div`, {style: {height: `calc(100vh)`, [`max-height`]: `calc(100vh - 0px)`, [`overflow-y`]: `scroll`, padding: `${0}px ${16}px`}}, DOM[0]]]]]];
-
     }, 
 
     inputMug: (Arg) => {
@@ -282,6 +278,35 @@ let Models = {
             return [`main`, {style: {background: `#fff`, margin: `auto`, [`max-width`]: `${400}px`, width: `${100}%`}}, 
                 [[`section`, {style: {[`font-family`]: `qb`, margin: `${24}px`, [`max-width`]: `${100}%`}}, 
                     [[`h1`, {style: {color: `#eb6538`, [`font-family`]: `qb`, [`font-size`]: `${28}px`}}, `Sojava`], DOM[Arg[0]]]]]]
+    }, 
+
+    mailbox: (Arg) => {
+
+      let Mail = []
+
+      let DOM = [[]];
+
+      Arg.forEach(Obj => {
+
+        DOM[0].push([`div`, {style: {[`margin-bottom`]: `${16}px`}}, 
+          [[`div`, {style: {[`border-bottom`]: `${1}px solid #eb6538`}}, 
+            [[`h3`, {style: {[`font-weight`]: 600, [`text-transform`]: `capitalize`}}, Obj.content[0]], 
+            [`div`, {class: `_gxM`, style: { margin: `${6}px ${0}`,}}, 
+              [[`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${9}px`,[`text-transform`]: `uppercase`}}, Obj.content[1]], 
+              [`div`, {class: `_gZz`, style: {color: `#525252`, [`font-family`]: `insvg`, [`font-size`]: `${10.88}px`, [`font-weight`]: 600}}, new Date(Obj.ts).toLocaleString()]]]]], 
+          [`p`, {style: {color: `#1a1a1a`, [`font-size`]: `${12.88}px`, [`line-height`]: `${18}px`, [`margin-top`]: `${6}px`}}, Obj.content[2]]]]);
+      });
+
+      return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, top: 0, width: `${100}%`}}, 
+        [[`div`, {style: {width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`div`, {style: {[`font-weight`]: 300}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `notifications`],
+              [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
+            [`div`, {class: `_gZz`}, 
+              [[`svg`, {id: `boxClose`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
+                [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
+          [`div`, {style: {height: `calc(100vh)`, [`max-height`]: `calc(100vh)`, [`overflow-y`]: `scroll`, padding: `${16}px ${16}px`}}, DOM[0]]]]]];  
     },
 
     multi: (Obj) => {
@@ -291,38 +316,32 @@ let Models = {
       Obj.objs.forEach(Value => {
 
         DOM[0].push([`div`, {id: Value[0], class: `_gxM _geQ`, style: {margin: `${6}px ${0}`}}, 
-                    [
-                        [`div`, {}, 
-                            [
-                                [`span`, {style: {[`font-size`]: `${10}px`, [`font-weight`]: 300, [`text-transform`]: `uppercase`}}, Value[0] + `` + Obj.mass.toLowerCase()],
-                                [`div`, {class: `_gxM`, style: {[`font-family`]: ``, [`font-size`]: `${12.88}px`, [`margin-top`]: `${4}px`}}, 
-                                    [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Value[1]).toFixed(2)}`]]]]], 
-                        [`div`, {class: `_gZz`}, 
-                            [
-                                [`svg`, {class: `multibox`, role: `-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${20}px`, width: `${20}px`}}, 
-                                    [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `-`]]], 
-                                [`span`, {style: {margin: `${0} ${12}px`, [`text-align`]: `center`, width: `${36}px`}}, (!Clients.box || !Tools.typen(Clients.box)[Obj.ts] || !Tools.typen(Clients.box)[Obj.ts].objs[Value[0]])? `0`: `${Tools.typen(Clients.box)[Obj.ts].objs[Value[0]][1]}`],
-                                [`svg`, {class: `multibox`, role: `+`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${20}px`, width: `${20}px`}}, 
-                                    [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `+`]]]]]]]);
-            });
+          [[`div`, {}, 
+            [[`span`, {style: {[`font-size`]: `${10}px`, [`font-weight`]: 300, [`text-transform`]: `uppercase`}}, Value[0] + ` ` + Obj.mass.toLowerCase()],
+            [`div`, {class: `_gxM`, style: {[`font-family`]: `iintext`, [`font-size`]: `${12.88}px`, [`font-weight`]: 600, [`margin-top`]: `${4}px`}}, 
+              [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {}, `${parseFloat(Value[1]).toFixed(2)}`]]]]], 
+          [`div`, {class: `_gZz`}, 
+            [[`svg`, {class: `multibox`, role: `-`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${20}px`, width: `${20}px`}}, 
+              [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `-`]]], 
+            [`span`, {style: {margin: `${0} ${12}px`, [`text-align`]: `center`, width: `${36}px`}}, (!Clients.box || !Tools.typen(Clients.box)[Obj.ts] || !Tools.typen(Clients.box)[Obj.ts].objs[Value[0]])? `0`: `${Tools.typen(Clients.box)[Obj.ts].objs[Value[0]][1]}`],
+            [`svg`, {class: `multibox`, role: `+`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${20}px`, width: `${20}px`}}, 
+              [[`text`, {[`font-size`]: `${16}px`, [`stroke-width`]: 1, [`text-anchor`]: `middle`, x: 12, y: `16`}, `+`]]]]]]]);
+      });
 
-        return [`div`, {style: {bottom: 0, left: 0, margin: `auto`, [`max-width`]: `${480}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
-                [[`div`, {style: {background: `#fff`, width: `${100}%`}}, 
-                    [
-                        [`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
-                            [
-                                [`img`, {src: `wa/get/catalog/${Obj.img}`, style: {[`width`]: `${36}px`}}], 
-                                [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}},  
-                                    [
-                                        [`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Obj.label.replaceAll(`_`, ` `)],
-                                        [`span`, {style: {color: `#9d9d9d`, [`font-family`]: ``, [`font-size`]: `${9}px`, [`margin-top`]: `${6}px`}}, `${Obj.objs.length} OPTIONS AVAILABLE`]]], 
-                                [`div`, {class: `_gZz`}, 
-                                    [[`svg`, {id: `multiClose`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
-                                        [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
-                        [`div`, {style: {padding: `${10}px ${16}px`}}, DOM[0]]]]]];
-        },
+      return [`div`, {style: {bottom: 0, left: 0, margin: `auto`, [`max-width`]: `${480}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
+        [[`div`, {style: {background: `#fff`, width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`img`, {src: `wa/get/catalog/${Obj.img}`, style: {[`width`]: `${36}px`}}], 
+            [`div`, {class: `_eYG`, style: {[`margin-right`]: `${6}px`}},  
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `capitalize`}}, Obj.label.replaceAll(`_`, ` `)],
+              [`span`, {style: {color: `#9d9d9d`, [`font-family`]: ``, [`font-size`]: `${9}px`, [`margin-top`]: `${6}px`}}, `${Obj.objs.length} OPTIONS AVAILABLE`]]], 
+            [`div`, {class: `_gZz`}, 
+              [[`svg`, {id: `multiClose`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
+                [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
+          [`div`, {style: {padding: `${10}px ${16}px`}}, DOM[0]]]]]];
+    },
 
-        pay: () => {
+    pay: () => {
 
             return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
                 [
@@ -355,8 +374,8 @@ let Models = {
                                                     [[`input`, {id: `callSlot`, placeholder: `712345678`, style: {background: `transparent`, [`border-style`]: `none`, [`font-family`]: `intext`, [`letter-spacing`]: `${.75}px`, outline: `none`, padding: 0, [`text-align`]: `right`, width: `${100}%`}}]]]]]]]]]]],
                             [`a`, {id: `mpesa`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13.33333}px`, margin: `${18}px ${0}`, [`padding`]: `${12}px`, [`text-align`]: `center`, width: `${100}%`}}, `CONTINUE`],
                             [`a`, {id: `payx`, href: `javascript:;`, style: {color: `#7d7d7d`, [`font-size`]: `${11.33333}px`, margin: `${0}px ${0} ${18}px`, [`text-align`]: `center`, width: `${100}%`}}, `CANCEL`]]]]]]]
-        }
     }
+  }
 }
 
 View = new View;

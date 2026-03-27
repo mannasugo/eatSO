@@ -95,7 +95,7 @@ class Route {
 
                 */
 
-                let Via = [];
+                let last = hold, Mail = [], Via = [];
 
                 if (Raw.mugs[1][Pulls.mug]) {
 
@@ -103,9 +103,17 @@ class Route {
 
                     if (Obj.mug === Pulls.mug && Obj.state === `queue`) {Via.push(Obj.invoice)}
                   });
+
+                  last = (!Raw.mugs[1][Pulls.mug][`last`])? last: Raw.mugs[1][Pulls.mug][`last`];
+
+                  Raw.mailbee[0].forEach(Obj => {
+
+                    if (Obj.mug === Pulls.mug && Obj.ts > last) {Mail.push(Obj)}
+                  });
                 }
 
-                Arg[1].end(Tools.coats({catalog: Objs, incoming: Via}));
+                Arg[1].end(Tools.coats({
+                  catalog: Objs, incoming: Via, mail: Mail.length}));
               }
 
               if (Pulls.pull === `incoming`) {
@@ -120,6 +128,28 @@ class Route {
                   });
 
                   Arg[1].end(Tools.coats({incoming: Via}));
+                }
+              }
+
+              if (Pulls.pull === `mailbee`) {
+
+                let Mail = [];
+
+                if (Raw.mugs[1][Pulls.mug]) {
+
+                  let Old = Tools.typen(Tools.coats(Raw.mugs[1][Pulls.mug]));
+
+                  Raw.mugs[1][Pulls.mug].last = new Date().valueOf();
+
+                  Sql.places([`mugs`, Raw.mugs[1][Pulls.mug], Old, (S) => {
+
+                    Raw.mailbee[0].forEach(Obj => {
+
+                      if (Obj.mug === Pulls.mug) {Mail.push(Obj)}
+                    });
+
+                    Arg[1].end(Tools.coats({mail: Mail}));
+                  }]);
                 }
               }
 

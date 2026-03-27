@@ -122,6 +122,37 @@ class Tools {
     writeFileSync(`bin/json/catalog.json`, this.coats(Obj));
   }
 
+  mailbee (Sql) {
+
+    Sql.pulls(Raw => {
+
+      let Mail = [[], []] 
+
+      Mail[0] = [
+        [
+          createHash(`md5`).update(`${new Date(`2026 03 26 20:31:58`).valueOf()}`, `utf8`).digest(`hex`),
+          new Date(`2026 03 26 20:31:58`).valueOf(), 
+          "25f66aec5b12a4ae6457420792e4a6cc",
+          `technical`, 
+          `transaction refund`, 
+          `Following a payment gateway malfunction your order #1774517182676 for the amount KES 139.48 failed to reflect on our transactions ledger. We have since rectified that and debited that amount to your account wallet. You may proceed to make another order within and not exceeding that amount at any time.`]];
+
+      Mail[0].forEach(Obj => {
+
+        if (!Raw.mailbee[1][Obj[0]]) {
+
+          Mail[1].push({
+            content: [Obj[4], Obj[3], Obj[5]],
+            md: Obj[0],
+            mug: Obj[2],
+            ts: Obj[1]});
+        }
+      });
+
+      Sql.putlist([`mailbee`, Mail[1], S => {}]);
+    });
+  }
+
   mailto (Arg) {
 
     async function mailto (Arg) {
