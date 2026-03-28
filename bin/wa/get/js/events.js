@@ -485,7 +485,7 @@ class Event {
 
   mug () {
 
-        if (document.querySelector(`#modalMugin`)) {
+    if (document.querySelector(`#modalMugin`)) {
 
             this.listen([document.querySelector(`#modalMugin`), `click`, S => {
 
@@ -495,9 +495,9 @@ class Event {
 
                 this.mug()
             }]);
-        }
+    }
 
-        if (document.querySelector(`#modalMugup`)) {
+    if (document.querySelector(`#modalMugup`)) {
 
             this.listen([document.querySelector(`#modalMugup`), `click`, S => {
 
@@ -507,9 +507,9 @@ class Event {
 
                 this.mug()
             }]);
-        }
+    }
 
-        if (document.querySelector(`#emailAvail`)) {
+    if (document.querySelector(`#emailAvail`)) {
 
             this.listen([document.querySelector(`#emailAvail`), `click`, S => {
 
