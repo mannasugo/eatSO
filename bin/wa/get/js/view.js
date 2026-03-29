@@ -341,27 +341,45 @@ let Models = {
           [`div`, {style: {padding: `${10}px ${16}px`}}, DOM[0]]]]]];
     },
 
-    pay: () => {
+    pay: (Arg) => {
 
-            return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
-                [
-                    [`div`, {style: {width: `${100}%`}}, 
-                        [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
-                            [ 
-                                [`div`, {style: {[`font-weight`]: 300}}, 
-                                    [
-                                        [`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Checkout`],
-                                        [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
-                                [`div`, {class: `_gZz _geQ`}, 
-                                    [
-                                        [`svg`, {viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${16}px`, width: `${16}px`}}, 
-                                            [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, 
-                                                [[`path`, {fill: `#fff`, d: `M0 2 3 2 8 19 16 19`}], [`circle`, {r: 1.9, cx: 7.5, cy: 20.9}], [`circle`, {r: 1.9, cx: 16.5, cy: 20.9}], [`path`, {fill: `none`, d: `M6 13 17 13 20 4 6 4`}]]]]], 
-                                        [`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
-                                            [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `total`}, `${parseFloat(0).toFixed(2)}`]]]]]]], 
-                        [`div`, {style: {padding: `${0}px ${16}px`}}, 
-                            [[`div`, {class: `_geQ _gxM`, style: {[`font-size`]: `${13}px`}}, 
-                                [[`span`, {style: {margin: `${12}px ${0} ${0}`, }}, `Pay with`],
+      let DOM = [[`span`, {style: {background: `#26cf50`, [`border-radius`]: `${8}px`, color: `#fff`, [`font-size`]: `${9.88}px`, [`line-height`]: `${14}px`, margin: `${4}px ${0}px`, padding: `${8}px`, [`text-transform`]: `uppercase`}}, `this is a one-time monthly subscription fee which covers free shipping for the next 30 days, after this payment you will not be charged a delivery fee for the next 30 days.`]];
+      
+      if (Arg.plan > new Date().valueOf()) {
+
+        DOM[0] = [`span`, {style: {background: `#26cf50`, color: `#fff`, [`font-size`]: `${9.88}px`, [`font-weight`]: 600, margin: `${4}px ${0}px`, padding: `${4}px`, width: `max-content`}}, `MONTHLY DELIVERY SUBSCRIPTION ACTIVE`];
+      }
+      return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${600}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
+        [[`div`, {style: {width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`div`, {style: {[`font-weight`]: 300}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Checkout`],
+              [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava`]]], 
+            [`div`, {class: `_gZz _geQ`, style: {display: `none`}}, 
+              [[`svg`, {viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${16}px`, width: `${16}px`}}, 
+                [[`g`, {style: {fill: `none`, stroke: `#000`, [`stroke-width`]: 1}}, 
+                  [[`path`, {fill: `#fff`, d: `M0 2 3 2 8 19 16 19`}], [`circle`, {r: 1.9, cx: 7.5, cy: 20.9}], [`circle`, {r: 1.9, cx: 16.5, cy: 20.9}], [`path`, {fill: `none`, d: `M6 13 17 13 20 4 6 4`}]]]]], 
+              [`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+                [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: ``}, `${parseFloat(0).toFixed(2)}`]]]]]]], 
+          [`div`, {style: {[`font-size`]: `${13}px`, padding: `${0}px ${16}px`}}, 
+            [[`div`, {class: `_gxM _geQ`, style: {[`margin-top`]: `${12}px`}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `Sub total`], 
+              [`div`, {class: `_gZz`}, 
+                [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+                  [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `total`}, `${parseFloat(0).toFixed(2)}`]]]]]]],
+            [`div`, {style: {[`margin-top`]: `${12}px`}}, 
+              [[`div`, {class: `_gxM _geQ`, style: {[`margin-top`]: `${0}px`}}, 
+                [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `SHIPPING FEE`], 
+                [`div`, {class: `_gZz`}, 
+                  [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+                    [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `fee`}, `${parseFloat(0).toFixed(2)}`]]]]]]], DOM[0]]],
+            [`div`, {class: `_gxM _geQ`, style: {[`margin-top`]: `${12}px`}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`text-transform`]: `uppercase`}}, `TOTAL`], 
+              [`div`, {class: `_gZz`}, 
+                [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+                  [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `sum`}, `${parseFloat(0).toFixed(2)}`]]]]]]],
+                  [`div`, {class: `_geQ _gxM`, style: {}}, 
+              [[`span`, {style: {margin: `${12}px ${0} ${0}`, }}, `Pay with`],
                                 [`span`, {style: {margin: `${12}px ${0} ${0} ${8}px`, [`text-decoration`]: `underline`}}, `M-PESA(Mobile Money)`]]],
                             [`div`, {style: {[`margin-top`]: `${18}px`}}, 
                                 [[`div`, {class: `_gxM _geQ`, style: {border: `1px solid rgba(${193}, ${193}, ${193}, ${.25})`, [`border-radius`]: `${100}px`, [`font-family`]: `intext`, [`font-size`]: `${13.33333}px`, height: `${36}px`, padding: `${12}px ${16}px`}}, 

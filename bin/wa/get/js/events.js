@@ -350,77 +350,97 @@ class Event {
               document.querySelector(`#total`).innerText = float.toFixed(2);
             }]);
           });
-                }
+        }
 
-                this.listen([document.querySelector(`#paymug`), `click`, S => {
+        this.listen([document.querySelector(`#paymug`), `click`, S => {
                 
-                    if (!Clients.mug) {
+          if (!Clients.mug) {
 
-                        View.pop();
+            View.pop();
 
-                        View.DOM([`#modal`, [Models.app.inputMug([0])]]);
+            View.DOM([`#modal`, [Models.app.inputMug([0])]]);
 
-                        this.mug();
-                    }
+            this.mug();
+          }
 
-                    if (Clients.mug) {
+          if (Clients.mug) {
 
-                        View.pop();
+            let XHR = [];
 
-                        View.DOM([`#modal`, [Models.app.pay()]]);
+            XHR[0] = Tools.pull([
+              `/json/web/`, { 
+                mug: Clients.mug, pull: `paymug`}]);
 
-                        let Box = Tools.typen(Clients.box), float = 0;
+            XHR[0].onload = () => {
 
-                        for (let item in Box) {
+              XHR[1] = Tools.typen(XHR[0].response);
 
-                            for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
-                        }
+              View.pop();
 
-                        document.querySelector(`#total`).innerText = float.toFixed(2);
+              View.DOM([`#modal`, [Models.app.pay(XHR[1])]]);
 
-                        this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
+              let Box = Tools.typen(Clients.box), float = 0;
 
-                            let Slot = this.getSource(S);
+              for (let item in Box) {
 
-                            if (!parseInt(Slot.value)) Slot.value = 0;
+                for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
+              }
 
-                            if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
+              let fee = 0;
 
-                            Slot.value = parseInt(Slot.value);
-                        }]);
+              document.querySelector(`#total`).innerText = float.toFixed(2);
 
-                        this.listen([document.querySelector(`#mpesa`), `click`, S => {
+              if (XHR[1].plan < new Date().valueOf()) {fee = 349.99}
 
-                            let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
+              document.querySelector(`#fee`).innerText = fee.toFixed(2);
 
-                            if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
+              document.querySelector(`#sum`).innerText = (float+fee).toFixed(2);
 
-                            let XHR = [];
+              this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
 
-                            XHR[0] = Tools.pull([
-                                `/json/web/`, { 
-                                    box: Tools.typen(Clients.box),
-                                    call: parseFloat(Values[0]),
-                                    flag: `incoming`,
-                                    float: parseFloat(float),
-                                    mug: Clients.mug, 
-                                    pull: `pay`}]);
+                let Slot = this.getSource(S);
 
-                            Values = [];
+                if (!parseInt(Slot.value)) Slot.value = 0;
 
-                            document.querySelector(`#modal`).style.display = `none`
+                if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
 
-                            XHR[0].onload = () => {
+                Slot.value = parseInt(Slot.value);
+              }]);
 
-                                XHR[1] = Tools.typen(XHR[0].response);
-                            }
-                        }]);
+              this.listen([document.querySelector(`#mpesa`), `click`, S => {
 
-                        this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
-                    }
-                }]);
+                let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
 
-                this.listen([document.querySelector(`#boxClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
+                if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
+
+                let XHR = [];
+
+                XHR[0] = Tools.pull([
+                  `/json/web/`, { 
+                    box: Tools.typen(Clients.box),
+                    call: parseFloat(Values[0]), 
+                    fee: parseFloat(fee),
+                    flag: `incoming`,
+                    float: parseFloat(float),
+                    mug: Clients.mug, 
+                    pull: `pay`}]);
+
+                Values = [];
+
+                document.querySelector(`#modal`).style.display = `none`
+
+                XHR[0].onload = () => {
+
+                  XHR[1] = Tools.typen(XHR[0].response);
+                }
+              }]);
+
+              this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);     
+            }
+          }
+        }]);
+
+        this.listen([document.querySelector(`#boxClose`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
       }
 
       boxup();

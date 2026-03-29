@@ -254,6 +254,14 @@ class Route {
                   }
                 }
               }
+
+              if (Pulls.pull === `paymug`) {
+
+                if (Raw.mugs[1][Pulls.mug]) {
+                    
+                  Arg[1].end(Tools.coats({plan: (Raw.mugs[1][Pulls.mug].plan)? Raw.mugs[1][Pulls.mug].plan: hold}));
+                }
+              }
             });
           }
         }
@@ -288,7 +296,14 @@ class Route {
 
                 Raw.incoming[1][Obj[1]].state = `complete`;
 
-                Sql.places([`incoming`, Raw.incoming[1][Obj[1]], Old, (Q) => {}]);
+                Sql.places([`incoming`, Raw.incoming[1][Obj[1]], Old, (Q) => {
+
+                  let old = Tools.typen(Tools.coats(Raw.mugs[1][Arg[0]]));
+
+                  Raw.mugs[1][Arg[0]].plan = new Date().valueOf() + (60000*60*24*30);
+
+                  Sql.places([`mugs`, Raw.mugs[1][Arg[0]], old, (Q) => {}]);
+                }]);
               }
 
               if (Blob.invoice.state === `FAILED`) {
