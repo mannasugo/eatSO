@@ -421,7 +421,7 @@ class Event {
                     call: parseFloat(Values[0]), 
                     fee: parseFloat(fee),
                     flag: `incoming`,
-                    float: parseFloat(float),
+                    float: parseFloat(float) + parseFloat(fee),
                     mug: Clients.mug, 
                     pull: `pay`}]);
 

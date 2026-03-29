@@ -238,7 +238,7 @@ class Route {
 
                       if (Blob.id) {
 
-                        Sql.puts([`incoming`, {
+                        Sql.puts([`incoming`, {fee: Pulls.fee,
                           float: parseFloat(Pulls.float),
                           id: `254` + Pulls.call,  
                           info: Pulls.box,
@@ -281,7 +281,7 @@ class Route {
 
           Raw.incoming[0].forEach(Obj => {
 
-            if (Obj.mug === Arg[0] && Arg[1].indexOf(Obj.invoice) > -1 && Obj.state === `queue`) Yet.push([Obj.invoice, Obj.md])
+            if (Obj.mug === Arg[0] && Arg[1].indexOf(Obj.invoice) > -1 && Obj.state === `queue`) Yet.push([Obj.invoice, Obj.md, (Obj.fee)? Obj.fee: 0])
           });
 
           Yet.forEach(Obj => {
@@ -290,7 +290,7 @@ class Route {
             .status(Obj[0])
             .then((Blob) => {
 
-              if (Blob.invoice.state === `COMPLETE` && !Raw.ledge[1][Obj[1]]) {
+              if (Blob.invoice.state === `COMPLETE`) {
 
                 let Old = Tools.typen(Tools.coats(Raw.incoming[1][Obj[1]]));
 
@@ -298,11 +298,14 @@ class Route {
 
                 Sql.places([`incoming`, Raw.incoming[1][Obj[1]], Old, (Q) => {
 
-                  let old = Tools.typen(Tools.coats(Raw.mugs[1][Arg[0]]));
+                  if (Obj[2] > 0) {
 
-                  Raw.mugs[1][Arg[0]].plan = new Date().valueOf() + (60000*60*24*30);
+                    let old = Tools.typen(Tools.coats(Raw.mugs[1][Arg[0]]));
 
-                  Sql.places([`mugs`, Raw.mugs[1][Arg[0]], old, (Q) => {}]);
+                    Raw.mugs[1][Arg[0]].plan = new Date().valueOf() + (60000*60*24*30);
+
+                    Sql.places([`mugs`, Raw.mugs[1][Arg[0]], old, (Q) => {}]);
+                  }
                 }]);
               }
 
