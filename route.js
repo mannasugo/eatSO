@@ -273,7 +273,7 @@ class Route {
 
     App.on(`connection`, Polling => {
 
-      Polling.on(`incoming`, Arg => {
+      Polling.on(`incoming`, Arg => {console.log(Arg)
 
         Sql.pulls(Raw => {
 
@@ -291,7 +291,6 @@ class Route {
             .then((Blob) => {
 
               if (Blob.invoice.state === `COMPLETE`) {
-
                 let Old = Tools.typen(Tools.coats(Raw.incoming[1][Obj[1]]));
 
                 Raw.incoming[1][Obj[1]].state = `complete`;
@@ -309,7 +308,7 @@ class Route {
                 }]);
               }
 
-              if (Blob.invoice.state === `FAILED`) {
+              if (Blob.invoice.state === `FAILED`) {console.log(console.log(Blob))
 
                 let Old = Tools.typen(Tools.coats(Raw.incoming[1][Obj[1]]));
 
