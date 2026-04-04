@@ -33,15 +33,17 @@ class Event {
 
         let METER = VAR.parentNode.children;
 
-                if (!Clients.box) {Clients.box = Tools.coats({})}
+        if (!Clients.box) {Clients.box = Tools.coats({})}
 
-                let Box = Tools.typen(Clients.box);
+        let Box = Tools.typen(Clients.box);
 
-                if (Catalog[Slot.id].objs.length === 1) {let items = 0;
+        if (Catalog[Slot.id].objs.length === 1) {
 
-                    if (VAR.getAttribute(`role`) === `+`) {
+          let items = 0;
 
-                        if (!Tools.typen(Clients.box)[Slot.id]) {
+          if (VAR.getAttribute(`role`) === `+`) {
+
+            if (!Tools.typen(Clients.box)[Slot.id]) {
 
                             Box[Slot.id] = {
                                 label: Catalog[Slot.id].label.toString().replace(`_`, ` `), 
@@ -49,23 +51,23 @@ class Event {
                                 objs: {[VAR.parentNode.id]: [Catalog[Slot.id].pay[VAR.parentNode.id], 1]}};
 
                             Clients.box = Tools.coats(Box);
-                        }
+            }
 
-                        else if (Tools.typen(Clients.box)[Slot.id]) {
+            else if (Tools.typen(Clients.box)[Slot.id]) {
 
                             Box[Slot.id].objs[VAR.parentNode.id][1] += 1;
 
                             Clients.box = Tools.coats(Box);
-                        }
+            }
 
                         VAR.previousSibling.innerText = Box[Slot.id].objs[VAR.parentNode.id][1];
 
                         VAR.previousSibling.style.display = `flex`;
 
                         VAR.previousSibling.previousSibling.style.display = `flex`;
-                    }
+          }
 
-                    if (VAR.getAttribute(`role`) === `-`) {
+          if (VAR.getAttribute(`role`) === `-`) {
 
                         if (Tools.typen(Clients.box)[Slot.id] && Tools.typen(Clients.box)[Slot.id].objs[VAR.parentNode.id]) {
 
@@ -93,14 +95,14 @@ class Event {
 
                             VAR.nextSibling.innerText = (!Box[Slot.id])? 0: Box[Slot.id].objs[VAR.parentNode.id][1];
                         }                       
-                    }
+          }
 
-                    for (let item in Box) {++items}
+          for (let item in Box) {++items}
 
-                    document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = items;
-                }
+          document.querySelectorAll(`#menu-box-list ._gZz`)[0].innerText = items;
+        }
 
-                if (Catalog[Slot.id].objs.length > 1) {
+        if (Catalog[Slot.id].objs.length > 1) {
 
                     View.pop();
 
@@ -264,7 +266,7 @@ class Event {
 
                   Box[Slot[0]].objs[Slot[1]][1] -= 1;
 
-                                    if (Box[Slot[0]].objs[Slot[1]][1] === 0) {
+                  if (Box[Slot[0]].objs[Slot[1]][1] === 0) {
 
                                         let Objs = {};
 
@@ -295,11 +297,11 @@ class Event {
                                         Clients.box = Tools.coats(Box);
 
                                         boxup();
-                                    }
+                  }
 
-                                    Clients.box = Tools.coats(Box);
+                  Clients.box = Tools.coats(Box);
 
-                                    if (Box[Slot[0]]) {
+                  if (Box[Slot[0]]) {
 
                                         for (let item in Box[Slot[0]].objs) {items += parseFloat(Box[Slot[0]].objs[item][1])}
 
@@ -308,11 +310,11 @@ class Event {
                                         METER[0].style.display = `flex`;
 
                                         METER[1].style.display = `flex`;
-                                    }
+                  }
 
-                                    VAR.nextSibling.innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: Box[Slot[0]].objs[Slot[1]][1];
+                  VAR.nextSibling.innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: Box[Slot[0]].objs[Slot[1]][1];
 
-                                    VAR.parentNode.parentNode.querySelector(`.sum`).innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
+                  VAR.parentNode.parentNode.querySelector(`.sum`).innerText = (!Box[Slot[0]] || !Box[Slot[0]].objs[Slot[1]])? 0: parseFloat(Box[Slot[0]].objs[Slot[1]][1]*Box[Slot[0]].objs[Slot[1]][0]).toFixed(2);
                 }
               }
 
@@ -377,65 +379,111 @@ class Event {
 
               View.pop();
 
-              View.DOM([`#modal`, [Models.app.pay(XHR[1])]]);
+              View.DOM([`#modal`, [Models.app.paygate(XHR[1])]]);
 
-              let Box = Tools.typen(Clients.box), float = 0;
+              this.listen([document.querySelector(`#modal .exit`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);
 
-              for (let item in Box) {
+              let select = ``;
 
-                for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
-              }
+              document.querySelectorAll(`#modal .select`).forEach(VAR => {
 
-              let fee = 0;
+                this.listen([VAR, `click`, S => {
 
-              document.querySelector(`#total`).innerText = float.toFixed(2);
+                  document.querySelector(`#pay`).removeAttribute(`target`);
 
-              if (XHR[1].plan < new Date().valueOf()) {fee = 349.99}
+                  document.querySelector(`#pay`).href = `javascript:;`;   
 
-              document.querySelector(`#fee`).innerText = fee.toFixed(2);
+                  if (VAR.id === `sojava crypto`) {
 
-              document.querySelector(`#sum`).innerText = (float+fee).toFixed(2);
+                    document.querySelector(`#pay`).setAttribute(`target`, `blank`);
 
-              this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
+                    document.querySelector(`#pay`).href = `https://sojava.xyz`;                  
+                  }
 
-                let Slot = this.getSource(S);
+                  document.querySelectorAll(`#modal .select`).forEach(Obj => {
 
-                if (!parseInt(Slot.value)) Slot.value = 0;
+                    Obj.nextSibling.childNodes[0].style.fontWeight = 300
 
-                if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
+                    Obj.childNodes[1].style.display = `none`;
+                  })
 
-                Slot.value = parseInt(Slot.value);
-              }]);
+                  VAR.nextSibling.childNodes[0].style.fontWeight = 600
 
-              this.listen([document.querySelector(`#mpesa`), `click`, S => {
+                  VAR.querySelectorAll(`circle`)[1].style.display = `flex`; 
 
-                let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
+                  select = VAR.id
+                }])
+              });
 
-                if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
+              this.listen([document.querySelector(`#pay`), `click`, S => {
 
-                let XHR = [];
+                let Box = Tools.typen(Clients.box), float = 0;
 
-                XHR[0] = Tools.pull([
-                  `/json/web/`, { 
-                    box: Tools.typen(Clients.box),
-                    call: parseFloat(Values[0]), 
-                    fee: parseFloat(fee),
-                    flag: `incoming`,
-                    float: parseFloat(float) + parseFloat(fee),
-                    mug: Clients.mug, 
-                    pull: `pay`}]);
+                for (let item in Box) {
 
-                Values = [];
-
-                document.querySelector(`#modal`).style.display = `none`
-
-                XHR[0].onload = () => {
-
-                  XHR[1] = Tools.typen(XHR[0].response);
+                  for (let obj in Box[item].objs) {float += parseFloat(Box[item].objs[obj][1]*Box[item].objs[obj][0])}
                 }
-              }]);
 
-              this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]);     
+                let fee = 0;
+
+                if (select === `mobile pay`) {
+              
+                  View.pop();
+
+                  View.DOM([`#modal`, [Models.app.pay(XHR[1])]]);
+
+                  document.querySelector(`#total`).innerText = float.toFixed(2);
+
+                  if (XHR[1].plan < new Date().valueOf()) {fee = 349.99}
+
+                  document.querySelector(`#fee`).innerText = fee.toFixed(2);
+
+                  document.querySelector(`#sum`).innerText = (float+fee).toFixed(2);
+
+                  this.listen([document.querySelector(`#callSlot`), `keyup`, S => {
+
+                    let Slot = this.getSource(S);
+
+                     if (!parseInt(Slot.value)) Slot.value = 0;
+
+                    if (Slot.value.length > 9) Slot.value = Slot.value.substr(0, 8);
+
+                    Slot.value = parseInt(Slot.value);
+                  }]);
+
+                  this.listen([document.querySelector(`#mpesa`), `click`, S => {
+
+                    let Values = [(!Tools.slim(document.querySelector(`#callSlot`).value))? false: Tools.slim(document.querySelector(`#callSlot`).value)];
+
+                    if (Values[0] === false || typeof parseFloat(Values[0]) !== `number` || Values[0].toString().length !== 9) return;
+
+                    let XHR = [];
+
+                    XHR[0] = Tools.pull([
+                        `/json/web/`, { 
+                          box: Tools.typen(Clients.box),
+                          call: parseFloat(Values[0]), 
+                          fee: parseFloat(fee),
+                          flag: `incoming`,
+                          float: parseFloat(float) + parseFloat(fee),
+                          mug: Clients.mug, 
+                          pull: `pay`}]);
+
+                    Values = [];
+
+                    document.querySelector(`#modal`).style.display = `none`
+
+                    XHR[0].onload = () => {
+
+                      XHR[1] = Tools.typen(XHR[0].response);
+                    }
+                  }]);
+
+                  this.listen([document.querySelector(`#payx`), `click`, S => {document.querySelector(`#modal`).style.display = `none`}]); 
+                }
+
+                if (select === `sojava crypto`) {}
+              }]);
             }
           }
         }]);

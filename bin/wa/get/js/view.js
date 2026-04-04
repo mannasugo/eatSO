@@ -131,7 +131,7 @@ let Models = {
               [[`section`, {}, [[`h2`, {style: {[`font-family`]: ``, [`text-transform`]: `uppercase`}}, `popular this hour`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]],
                 /*[`section`, {}, [[`span`, {style: {[`font-family`]: `qb`, [`text-transform`]: `uppercase`}}, `order it again`], [`div`, {style: {[`margin-top`]: `${24}px`}}, DOM[0]]]]*/]], 
             [`div`, {id: `modal`, style: {background: `rgba(${217}, ${217}, ${217}, ${0.8})`, bottom: 0, display: `none`, position: `fixed`, top: 0, width: `${100}%`, [`z-index`]: 18}}],
-            [`div`, {id: `alert`, style: {position: `fixed`, left: 0, bottom: 0, [`font-family`]: `es`, [`font-size`]: `${11.88}px`, padding: `${12}px`, width: `${100}%`, [`z-index`]: 15}}, 
+            [`div`, {id: `alert`, style: {position: `fixed`, left: 0, bottom: 0, display: `none`, [`font-family`]: `es`, [`font-size`]: `${11.88}px`, padding: `${12}px`, width: `${100}%`, [`z-index`]: 15}}, 
               [[`div`, {style: {background: `#ffffff`, [`border-radius`]: `${8}px`, [`box-shadow`]: `rgba(${10}, ${14}, ${29}, ${0.2}) 0 ${8}px ${64}px ${4}px`, height: ``, margin: `auto`, [`max-width`]: `${600}px`, padding: `${12}px`, width: `${100}%`}}, 
               [[`div`, {class: `_geQ _gxM`}, 
                 [[`svg`, {id: `menu-box`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
@@ -241,15 +241,13 @@ let Models = {
 
     inputMug: (Arg) => {
 
-            let DOM = [];
+      let DOM = [];
 
-            DOM[0] = [`section`, {}, 
-                [
-                    [`h2`, {style: {[`font-size`]: `${19}px`, [`margin-top`]: `${28}px`}}, `Welcome to Sojava`],
-                    [`div`, {style: {[`margin-top`]: `${22}px`}}, 
-                        [
-                            [`label`, {style: {[`font-size`]: `${10.88}px`, [`margin-bottom`]: `${3}px`}}, `Email`], 
-                            [`input`, {id: `email`, placeholder: `Email`, type: `email`, style: {background: `#66666629`, [`block-size`]: `${32}px`, border: `none`, [`font-family`]: `qb`, [`font-size`]: `${11.88}px`, [`letter-spacing`]: `${1.2}px`, outline: `none`, padding: `${8}px ${12}px`, width: `${100}%`}}]]], 
+      DOM[0] = [`section`, {}, 
+        [[`h2`, {style: {[`font-size`]: `${19}px`, [`margin-top`]: `${28}px`}}, `Welcome to Sojava`],
+        [`div`, {style: {[`margin-top`]: `${22}px`}}, 
+          [[`label`, {style: {[`font-size`]: `${10.88}px`, [`margin-bottom`]: `${3}px`}}, `Email`], 
+          [`input`, {id: `email`, placeholder: `Email`, type: `email`, style: {background: `#66666629`, [`block-size`]: `${32}px`, border: `none`, [`font-family`]: `qb`, [`font-size`]: `${11.88}px`, [`letter-spacing`]: `${1.2}px`, outline: `none`, padding: `${8}px ${12}px`, width: `${100}%`}}]]], 
                     [`a`, {id: `emailAvail`, href: `javascript:;`, style: {[`align-content`]: `center`, background: `#eb6538`, [`block-size`]: `${32}px`, color: `#fff`, display: `inline-grid`, [`font-size`]: `${11.88}px`, [`margin-top`]: `${16}px`, [`text-align`]: `center`}}, `Continue`],
                     [`a`, {id: `modalMugin`, href: `javascript:;`, style: {color: `#eb6538`, [`font-size`]: `${11.88}px`, [`margin-top`]: `${16}px`, [`text-align`]: `center`}}, `Sign in`]]];
 
@@ -392,6 +390,40 @@ let Models = {
                                                     [[`input`, {id: `callSlot`, placeholder: `712345678`, style: {background: `transparent`, [`border-style`]: `none`, [`font-family`]: `intext`, [`letter-spacing`]: `${.75}px`, outline: `none`, padding: 0, [`text-align`]: `right`, width: `${100}%`}}]]]]]]]]]]],
                             [`a`, {id: `mpesa`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13.33333}px`, margin: `${18}px ${0}`, [`padding`]: `${12}px`, [`text-align`]: `center`, width: `${100}%`}}, `CONTINUE`],
                             [`a`, {id: `payx`, href: `javascript:;`, style: {color: `#7d7d7d`, [`font-size`]: `${11.33333}px`, margin: `${0}px ${0} ${18}px`, [`text-align`]: `center`, width: `${100}%`}}, `CANCEL`]]]]]]]
+    },
+
+    paygate: () => {
+
+      let DOM = [[]], Pay = [[`account balance`, ``, 0], [`mobile pay`, `M-PESA`, true], [`paypal`, ``, false], [`sojava crypto`, `USDT`, true]];
+
+      Pay.forEach(Obj => {
+
+        let DOM2 = [[`span`, {style: {background: (Obj[2] === false)? `#cf2626`: `#26cf50`, color: `#fff`, [`font-size`]: `${7.88}px`, [`font-weight`]: 300, margin: `${4}px ${0}px`, padding: `${3}px`, width: `max-content`}}, (Obj[2] === false)? `OFFLINE` : `AVAILABLE`]];
+
+        DOM[0].push([`div`, {class: `_gxM _geQ`, style: {padding: `${4}px ${0}`, [`margin-top`]: `${12}px`}}, 
+          [[`svg`, {id: Obj[0], class: (Obj[2] === false)? ``: `select`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${18}px`, opacity: (Obj[2] === false)? .25: 1, width: `${18}px`}}, 
+            [[`circle`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, cx: 12, cy: 12, r: 10}],
+            [`circle`, {style: {display: `none`}, fill: `#000`, stroke: `none`, cx: 12, cy: 12, r: 6}]]], 
+          [`div`, {class: `_eYG`}, 
+            [[`span`, {style: {[`font-weight`]: 300, [`text-transform`]: `capitalize`}}, Obj[0]],
+              [`span`, {style: {color: `#525252`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, Obj[1]]]], 
+          [`div`, {class: `_gZz`}, 
+            [[`div`, {class: `_gxM`, style: {[`font-size`]: `${15}px`, [`font-weight`]: 300, [`justify-content`]: `end`}}, 
+              (typeof Obj[2] !== `number`)? DOM2: [[`span`, {style: {[`align-items`]: `top`, color: `#7d7d7d`, display: `flex`, [`font-size`]: `${7.88}px`, [`margin-right`]: `${4}px`}}, `KES`], [`span`, {id: `fee`}, `${parseFloat(Obj[2]).toFixed(2)}`]]]]]]]);
+      });
+
+      return [`div`, {style: {background: `#fff`, bottom: 0, left: 0, margin: `${48}px auto ${0}`, [`max-width`]: `${480}px`, position: `absolute`, right: 0, width: `${100}%`}}, 
+        [[`div`, {style: {width: `${100}%`}}, 
+          [[`div`, {class: `_gxM _geQ`, style: {[`border-bottom`]: `${1}px solid #ececec`, padding: `${10}px ${16}px`}}, 
+            [[`div`, {style: {[`font-weight`]: 300}}, 
+              [[`span`, {style: {[`font-size`]: `${13}px`, [`font-weight`]: 300, [`text-transform`]: `uppercase`}}, `choose payment method`],
+              [`span`, {style: {color: `#9d9d9d`, [`font-size`]: `${11}px`, [`margin-top`]: `${3}px`}}, `Sojava Pay`]]], 
+            [`div`, {class: `_gZz _geQ`}, 
+              [[`svg`, {class: `exit`, viewbox: `0 0 24 24`, style: {cursor: `pointer`, height: `${12}px`, width: `${12}px`}}, 
+                [[`path`, {fill: `none`, stroke: `#000`, [`stroke-width`]: 2, d: `M0 6 12 18 24 6`}]]]]]]], 
+          [`div`, {style: {[`font-size`]: `${11.8888}px`, padding: `${0}px ${16}px`}}, 
+            [[`div`, {id: ``}, DOM[0]],
+            [`a`, {id: `pay`, href: `javascript:;`, style: {background: `#eb6538`, color: `#fff`, [`font-size`]: `${13.33333}px`, margin: `${18}px ${0}`, [`padding`]: `${12}px`, [`text-align`]: `center`, width: `${100}%`}}, `CONTINUE`]]]]]]];
     }
   }
 }
